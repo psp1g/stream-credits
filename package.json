@@ -1,0 +1,29 @@
+{
+  "name": "twitch-logger",
+  "version": "1.0.0",
+  "description": "A simple Twitch chat logger that logs messages to a JSON file.",
+  "main": "src/tmitest.js",
+  "scripts": {
+    "start": "node src/tmitest.js",
+    "eventsub": "node src/eventsub.js",
+    "twurple": "node src/twurple.js",
+    "tes": "node src/tes.js"
+  },
+  "dependencies": {
+    "@twurple/api": "^7.3.0",
+    "@twurple/auth": "^7.3.0",
+    "@twurple/easy-bot": "^7.3.0",
+    "@twurple/eventsub": "^5.3.4",
+    "@twurple/eventsub-http": "^7.3.0",
+    "@twurple/eventsub-ngrok": "^7.3.0",
+    "axios": "^1.6.8",
+    "express": "^4.18.2",
+    "tesjs": "^1.0.7",
+    "tmi.js": "^1.8.5",
+    "twitch": "^4.6.7",
+    "twitch-auth": "^4.6.7",
+    "twitch-eventsub": "^4.6.7"
+  },
+  "author": "",
+  "license": "ISC"
+}

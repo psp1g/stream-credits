@@ -1,0 +1,46 @@
+
+https://id.twitch.tv/oauth2/authorize?client_id=u94z9qatx8h6l5wvoj4gy52qq5uhn8&redirect_uri=https://flourek.dev/streamcredits/eventsub&response_type=code&scope=channel:read:redemptions+moderation:read+channel:read:subscriptions+channel:read:cheers+moderator:read:blocked_terms+moderator:read:chat_settings+moderator:read:unban_requests+moderator:read:banned_users+moderator:read:chat_messages+moderator:read:moderators+moderator:read:vips+channel:moderate+moderator:read:warnings
+
+
+
+
+
+https://id.twitch.tv/oauth2/token?client_id=u94z9qatx8h6l5wvoj4gy52qq5uhn8&client_secret=y12fwacqu44f1ehxbgkb525h48k3dd&code=n5st9xxyre40zkgzszgj1me571cu4ax&grant_type=authorization_code&redirect_uri=https://flourek.dev/streamcredits/eventsub
+
+
+https://id.twitch.tv/oauth2/authorize?client_id=u94z9qatx8h6l5wvoj4gy52qq5uhn8&redirect_uri=https://flourek.dev/streamcredits/eventsub&response_tcurl -X POST https://id.twitch.tv/oauth2/token \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d "client_id=u94z9qatx8h6l5wvoj4gy52qq5uhn8" \
+  -d "client_secret=y12fwacqu44f1ehxbgkb525h48k3dd" \
+  -d "code=wddnq56mfoj3dounumhsa5u1s745p4" \
+  -d "grant_type=authorization_code" \
+  -d "redirect_uri=https://flourek.dev/streamcredits/eventsub"ype=code&scope=channel:read:redemptions+moderation:read+channel:read:subscriptions+channel:read:cheers+moderator:read:blocked_terms+moderator:read:chat_settings+moderator:read:unban_requests+moderator:read:banned_users+moderator:read:chat_messages+moderator:read:moderators+moderator:read:vips+channel:moderate+moderator:read:warnings
+
+
+
+
+curl -X POST https://id.twitch.tv/oauth2/token \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d "client_id=u94z9qatx8h6l5wvoj4gy52qq5uhn8" \
+  -d "client_secret=y12fwacqu44f1ehxbgkb525h48k3dd" \
+  -d "code=a3bqmcv0nc904e9dyqi4ttred68e90" \
+  -d "grant_type=authorization_code" \
+  -d "redirect_uri=https://flourek.dev/streamcredits/eventsub"
+
+
+{"access_token":"3p8iw2culdawnvpeces8m8nhn2d9e4","expires_in":15666,"refresh_token":"yem504ehehb9uhc51wwdktjvqa5v0evz67cehr09u71h2cz6rf","scope":["channel:moderate","channel:read:cheers","channel:read:redemptions","channel:read:subscriptions","moderation:read","moderator:read:banned_users","moderator:read:blocked_terms","moderator:read:chat_messages","moderator:read:chat_settings","moderator:read:moderators","moderator:read:unban_requests","moderator:read:vips","moderator:read:warnings"],"token_type":"bearer"}
+
+
+twitch event verify-subscription subscribe -F https://flourek.dev/streamcredits/eventsub -s chuj
+
+
+twitch event trigger subscribe -F https://flourek.dev/streamcredits/eventsub
+
+https://id.twitch.tv/oauth2/authorize?client_id=u94z9qatx8h6l5wvoj4gy52qq5uhn8&redirect_uri=https://psp.flourek.dev/&response_type=code&scope=moderator:read:unban_requests+user:read:chat+user:bot+channel:bot&force_verify=true
+
+
+# 6.) Logged in the bots user account, visit: http://localhost:4343/oauth?scopes=moderation:read+channel:read:subscriptions+channel:read:cheers+moderator:read:blocked_terms+moderator:read:chat_settings+moderator:read:unban_requests+moderator:read:banned_users+moderator:read:chat_messages+moderator:read:moderators+moderator:read:vips+channel:moderate+moderator:read:warnings
+
+# 7.) Logged in as your personal user account, visit: http://localhost:4343/oauth?scopes=channel:read:redemptions+moderation:read+channel:read:subscriptions+channel:read:cheers+moderator:read:blocked_terms+moderator:read:chat_settings+moderator:read:unban_requests+moderator:read:banned_users+moderator:read:chat_messages+moderator:read:moderators+moderator:read:vips+channel:moderate+moderator:read:warnings
+
+
