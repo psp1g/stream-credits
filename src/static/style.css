@@ -1,0 +1,181 @@
+body {
+    background: #1a1a1a;
+    color: white;
+    font-family: sans-serif;
+    margin: auto;
+    width: 1850px;
+    text-align: center;
+    font-size: 2rem;
+    color: #ccc;
+    line-height: 6rem;
+    position: absolute;
+  }
+  
+@font-face {
+  font-family: 'CustomFont';
+  src: url('./font.ttf') format('truetype');
+}
+
+*{
+  font-family: 'CustomFont', sans-serif;
+}
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  a b {
+    font-size: 4em;
+    color: #7733ff;
+    text-shadow: 0 0 4px black;
+  }
+  
+  #intro {
+    display: flex;
+    align-items: center;
+    gap: 2em;
+  }
+  
+  .column {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+  }
+  
+  .button {
+    display: inline-block;
+    padding: 8px 16px;
+    background: #4d1ab3;
+    border: 2px solid #7733ff;
+    border-radius: 0.25em;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+    cursor: pointer;
+  }
+  .button:hover {
+    background: #5916df;
+  }
+  .button:active {
+    background: #6a25f4;
+  }
+  
+  #user:not(:empty):after {
+    content: "'s emotes";
+  }
+  
+  #emotes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2px;
+    margin-top: 1em;
+  }
+  #emotes .emote picture {
+    vertical-align: middle;
+    margin-right: 4px;
+    height: 28px;
+  }
+  
+  #filters {
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+  }
+  
+  #filters:has(#animated:checked) ~ #emotes .emote:not([data-format~=animated]) {
+    display: none;
+  }
+  
+  @media (prefers-reduced-motion) {
+    #filters label:has(#animated):after {
+      content: "(Reduced motion is enabled)";
+    }
+  }
+
+  #scrolling {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  top: 32%;
+  display: block;
+  position: absolute;
+  left: 1.7rem;
+
+  transform: scaleX(0.9);
+}
+
+  #logocontainer {
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+  }
+  
+  #psplogo{
+    width: 71vw !important;
+  display: none;
+  left: 230px;
+  position: absolute;
+  top: -106px;
+}
+
+#background{
+  width: 100vw;
+  top: -10vh;
+  left: 0;
+  position: absolute;
+  height: 112vh;
+}
+
+.line {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    margin: 10px 0;
+    line-height: 3rem;
+}
+
+.line .header {
+    width: 100%;
+    text-align: center;
+    font-size: 1.6rem;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    line-height: 6rem;
+}
+
+.line-content {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.line .left, .line .right {
+    flex: 1;
+    padding: 0 15px;
+}
+
+.line .left {
+    text-align: right;
+    font-size: 2.3rem !important;
+    margin-right: 67px;
+}
+
+.line .right {
+    text-align: left;
+    font-size: 2.8rem !important;
+    margin-right: 50px;
+
+}
+
+
+
+

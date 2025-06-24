@@ -4,8 +4,8 @@ const { DirectConnectionAdapter, EventSubListener, ReverseProxyAdapter } = requi
 const fs = require('fs');
 const path = require('path');
 
+
 const clientId = 'u94z9qatx8h6l5wvoj4gy52qq5uhn8';
-const clientSecret = 'y12fwacqu44f1ehxbgkb525h48k3dd';
 const broadcasterUserId = '415401864'; // Replace with your broadcaster user ID
 const userId = '415401864'; // Replace with your broadcaster user ID
 

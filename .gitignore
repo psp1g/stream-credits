@@ -22,3 +22,5 @@ Thumbs.db
 dist/
 build/
 out/
+list
+auth link

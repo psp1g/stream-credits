@@ -1,0 +1,82 @@
+{
+  "channel": "",
+  "categories": [],
+  "cast": [
+    { "name": "rafael", "role": "giraffe" },
+    { "name": "luh", "role": "host" },
+    { "name": "forsen", "role": "guest" }
+  ],
+  "programmers": [
+    "ftk",
+    "flourek",
+    "devPoland"
+  ],
+  "editors": {
+    "tiktok": "",
+    "shorts": "",
+    "youtube": "hylight"
+  },
+  "raid": {
+    "totalViewers": 0,
+    "raiders": []
+  },
+  "shoutout": [],
+  "moderators": {
+    "mostUseful": [],
+    "cosmetic": [],
+    "makingFunOf": [],
+    "allMods": []
+  },
+
+  "present": [],
+  "creditedInHalfLifeSpeedrun": [],
+
+  "support": {
+    "topGifters": [],
+    "subs": {
+      "gifted": 0,
+      "resub": 0,
+      "new": 0,
+      "users": []
+    },
+    "cheers": {
+      "total": 0,
+      "users": []
+    }
+  },
+  "redeems": {
+    "top5": [],
+    "vipWheelStats": {},
+    "totalChannelPointsSpent": 0
+  },
+  "messages": {
+    "total": 0,
+    "chatterCount": 0,
+    "chatters": {
+      "test1g": 1
+    },
+    "topChatters": [],
+    "firstTimeMessages": 0
+  },
+  "emotes": {
+    "topFrequency": [],
+    "newAdded": [],
+    "removed": [],
+    "longestStreak": 0,
+    "firstTimeTesters": 0
+  },
+  "moderation": {
+    "bans": 0,
+    "timeouts": 0,
+    "totalTimeoutSeconds": 0,
+    "unbanRequests": 0,
+    "deletedMessages": 0
+  },
+  "blicky": {
+    "xqc": 0,
+    "pokimane": 0,
+    "hasanabi": 0,
+    "mizkif": 0
+  },
+  "lastEvent": null
+}

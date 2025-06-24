@@ -1,17 +1,20 @@
 const TES = require("tesjs");
+require('dotenv').config(); 
+
+const app = require('./server'); 
 
 console.log("TES WAS");
 // initialize TESjs
 const tes = new TES({
     identity: {
-        id: "u94z9qatx8h6l5wvoj4gy52qq5uhn8",
-        secret: "c7mlu7j8tmhz92szcjefzlkk6my20a" //do not ship this in plaintext!! use environment variables so this does not get exposed
+        id: process.env.TWITCH_CLIENT_ID,
+        secret: process.env.TWITCH_CLIENT_SECRET
     },
     listener: {
         type: "webhook",
-        port: 3000,
+        server: app,
         baseURL: "https://psp.flourek.dev",
-        secret: "idkasdfasdfsdafasdf",
+        secret: process.env.WEBHOOKS_SECRET,
     }
 });
 

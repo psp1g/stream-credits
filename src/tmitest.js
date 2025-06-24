@@ -4,7 +4,6 @@ const fs = require('fs');
 const path = require('path');
 
 const clientId = "mbahipc06tkpvsedf2ezlslh5fzd55"
-const token = "p5c5rm4rvcy7ngappozzubwf598tdf"
 
 // Set up the client
 const client = new tmi.Client({
@@ -29,7 +28,7 @@ if (!fs.existsSync(logsDir)) {
 }
 
 client.on('chat', (channel, tags, message, self) => {
-    // Ignore echoed messages.
+    // Ignore echoed messages
     if (self) return;
 
     // Log everything exposed by the client on message event
