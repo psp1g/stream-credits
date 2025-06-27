@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stream Credits</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="logocontainer">
+        <img id="psplogo" src="img/1g.png" alt="">
+    </div>
+    
+    <div id="scrolling">
+        
+        <div class="line">
+            <div class="header">WRITTEN AND DIRECTED BY:</div>
+            <div id="director">PSP1G</div>
+        </div>
+
+        <div class="line">
+            <div class="header">(IN ORDER OF APPEARANCE)</div>
+            <% data.cast.forEach(person => { %>
+                <div class="line-content">
+                    <div class="left"><%= person.role %></div>
+                    <div class="right <%= person.name ? '' : 'empty-role' %>"><%- person.name || '&nbsp;' %></div>
+                </div>
+            <% }); %>
+        </div>
+
+        <div class="line">
+            <div class="header">MODERATORS</div>
+            <div class="line-content">
+                <div class="left">Most Useful</div>
+                <div class="right">
+                    <% data.moderators.useful.forEach(mod => { %>
+                        <div> <%= mod %>  </div>
+                    <% }); %>
+                </div>
+            </div>
+
+           
+            <div class="line-content">
+                <div class="left">Cosmetic</div>
+                <div class="right">
+                    <% data.moderators.cosmetic.forEach(mod => { %>
+                        <div> <%= mod %>  </div>
+                    <% }); %>
+                </div>
+            </div>
+            <div class="line-content">
+                <div class="left">Absent</div>
+                <div class="right">
+                    <% data.moderators.absent.forEach(mod => { %>
+                        <div> <%= mod %>  </div>
+                    <% }); %>
+                </div>
+            </div>
+        </div>
+        
+        <div class="line">
+            <div class="header">ARTISTS</div>
+            <% data.artists.forEach(person => { %>
+                <div class="line-content">
+                    <div class="left"><%= person.role %></div>
+                    <div class="right <%= person.name ? '' : 'empty-role' %>"><%- person.name || '&nbsp;' %></div>
+                </div>
+            <% }); %>
+        </div>
+
+        <div class="line">
+            <div class="header">EDITORS</div>
+            <% data.editors.forEach(person => { %>
+                <div class="line-content">
+                    <div class="left"><%= person.role %></div>
+                    <div class="right <%= person.name ? '' : 'empty-role' %>"><%- person.name || '&nbsp;' %></div>
+                </div>
+            <% }); %>
+        </div>
+     
+        <div class="line">
+            <div class="header">PROGRAMMERS</div>
+            <% data.programmers.forEach(person => { %>
+                <div class="line-content">
+                    <div class="left"><%- person.role %></div>
+                    <div class="right <%- person.name ? '' : 'empty-role' %>"><%- person.name || '&nbsp;' %></div>
+                </div>
+            <% }); %>
+        </div>
+
+
+        <!-- <div class="spacer"></div> -->
+
+        <!-- <div class="twoColumnsCentered">
+            <div class="line-content">
+                <div class="left">Will</div>
+                <div class="right">
+                    <div>MATT DAMON</div>
+                    <div>BEN AFFLECK</div>
+                    <div>ROBIN WILLIAMS</div>
+                </div>
+            </div>
+        </div>
+      -->
+    
+
+        <div class="line">
+            <div class="header">STATISTICS</div>
+            <div class="line-content">
+                <div class="left">Total Messages</div>
+                <div class="right"><%= data.messages.total %></div>
+            </div>
+            <div class="line-content">
+                <div class="left">Bans</div>
+                <div class="right"><%= data.moderation.bans %></div>
+            </div>
+            <div class="line-content">
+                <div class="left">Timeouts</div>
+                <div class="right"><%= data.moderation.timeouts %></div>
+            </div>
+        </div>
+
+        <div class="line">
+            <div class="header">TOP CHATTERS</div>
+            <% Object.entries(data.messages.topChatters).forEach(([name, count]) => { %>
+                <div class="line-content">
+                    <div class="left"><%= count %> messages</div>
+                    <div class="right"><%= name %></div>
+                </div>
+            <% }); %>
+        </div>
+    </div>
+
+    <img id="background" src="img/output.webp" alt="Background">
+
+    <!-- Move scripts to bottom -->
+    <!-- Add jQuery Color plugin -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -3,7 +3,9 @@ require('dotenv').config();
 
 const app = require('./server'); 
 
-console.log("TES WAS");
+
+
+console.log(process.env.TWITCH_CLIENT_SECRET);
 // initialize TESjs
 const tes = new TES({
     identity: {

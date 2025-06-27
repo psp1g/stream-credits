@@ -1,23 +1,73 @@
 body {
     background: #1a1a1a;
-    color: white;
     font-family: sans-serif;
     margin: auto;
     width: 1850px;
     text-align: center;
     font-size: 2rem;
     color: #ccc;
-    line-height: 6rem;
     position: absolute;
   }
   
 @font-face {
   font-family: 'CustomFont';
-  src: url('./font.ttf') format('truetype');
+  src: url('./FONT.otf') format('opentype');
 }
+
+
+
+/* Hide scrollbars everywhere */
+* {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+/* Hide scrollbars for WebKit browsers (Chrome, Safari, Edge) */
+*::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbars for html and body */
+html, body {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE */
+}
+
+html::-webkit-scrollbar, body::-webkit-scrollbar {
+    display: none;
+}
+
+
+
+
+
+/* CRT */
+
+  html { 
+        text-shadow: 0.03rem 0 0.03rem #ea36afcc, -0.06rem 0 0.01rem #75fa69cc;
+        letter-spacing: 0.06em;
+        animation-duration: 0.001s;
+        animation-name: textflicker;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+        filter: blur(0.8px);
+        }
+
+ @keyframes textflicker {
+    from {
+      text-shadow: 1px 0 0 #d32e98cc, -2px 0 0 #6ac05fcc;
+    }
+    to {
+      text-shadow: 2px 0.5px 2px #d32e98cc, -1px -0.5px 2px #6ac05fcc;
+    }
+  }
+
+/* END CRT */
 
 *{
   font-family: 'CustomFont', sans-serif;
+  letter-spacing: 0.2rem;
+  color: rgb(233, 233, 233);
 }
 
   a {
@@ -102,7 +152,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  top: 32%;
+  top: 150%;
   display: block;
   position: absolute;
   left: 1.7rem;
@@ -130,6 +180,7 @@ body {
   left: 0;
   position: absolute;
   height: 112vh;
+  z-index: -1;
 }
 
 .line {
@@ -138,44 +189,77 @@ body {
     align-items: center;
     width: 100vw;
     margin: 10px 0;
-    line-height: 3rem;
 }
 
-.line .header {
-    width: 100%;
-    text-align: center;
-    font-size: 1.6rem;
-    margin-bottom: 0.5rem;
-    font-weight: bold;
-    letter-spacing: 0.1em;
-    line-height: 6rem;
-}
 
-.line-content {
+
+.twoColumnsCentered {
     display: flex;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    align-items: center !important;
+    width: 100vw;
+    margin: 10px 0;
+
 }
 
-.line .left, .line .right {
+.header {
+  width: 100%;
+  text-align: center;
+  font-size: 3.7rem;
+  line-height: 5rem;
+  margin-bottom: 0.7rem;
+  margin-top: 5rem;
+  transform: translateX(-1.5rem);
+}
+.line-content {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+ .left,  .right {
     flex: 1;
     padding: 0 15px;
+    line-height: 2.5rem;
+
 }
 
-.line .left {
+ .left {
     text-align: right;
-    font-size: 2.3rem !important;
+    font-size: 4.2rem !important;
     margin-right: 67px;
 }
 
-.line .right {
+
+
+ .right {
     text-align: left;
-    font-size: 2.8rem !important;
+    font-size: 5rem !important;
     margin-right: 50px;
+    line-height: 2.8rem;
+    text-transform: uppercase1;
+}
+
+.twoColumnsCentered .left, .twoColumnsCentered .right {
+    text-align: center !important;
+    margin: 0px !important;
 
 }
 
+.spacer {
+    height: 5rem;
+    flex-shrink: 0; /* Prevents the spacer from shrinking in flex containers */
+}
 
 
+#director {
+    font-size: 6rem;
+    height: 4rem;
+    transform: translateY(-1rem) translateX(-1.5rem);
+}
 
+.empty-role{
+  height: 1.5rem;
+}

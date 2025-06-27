@@ -2,30 +2,65 @@
   "channel": "",
   "categories": [],
   "cast": [
-    { "name": "rafael", "role": "giraffe" },
-    { "name": "luh", "role": "host" },
-    { "name": "forsen", "role": "guest" }
+    { "name": "rafael", "role": "Best Friend" },
+    { "name": "deme", "role": "The ADHD Girl" },
+    { "name": "ohnepixel", "role": "Costreamer" },
+    { "name": "Lucy", "role": "Kitty Cat" },
+    { "name": "SmileyBS", "role": "Old Friend" },
+    { "name": "Ted Kaczynski", "role": "The Mathematician" },
+    { "name": "ArrowCS", "role": "The Bug Man" },
+    { "name": "renyan", "role": "Plus Forward Guy" },
+    { "name": "DIMA_WALLHACKS", "role": "The Dolbaeb" },
+    { "name": "MUTY", "role": "Half Life Coach" },
+    { "name": "DONA", "role": "Gang Leader" },
+    { "name": "ZOIL", "role": "Look Up" },
+    { "name": "wuh6", "role": "Wuh" },
+    { "name": "Crowbcat", "role": "Alt Account" },
+    { "name": "whaliin", "role": "MrSwagBoss" },
+    { "name": "Spaceashes", "role": "HIM" },
+    { "name": "Ketamine1g", "role": "The Dead Twin " },
+    { "name": "", "role": "" },
+    { "name": "bLitz",  "role": "The Mongolz" },
+    { "name": "Techno", "role": "" },
+    { "name": "Senzu",  "role": "" },
+    { "name": "mzinho", "role": "" },
+    { "name": "910",    "role": "" },
+    { "name": "", "role": "" },
+    { "name": "OTAG", "role": "Scientist, Soldier, Wizard" },
+    { "name": "Summit1g", "role": "Self Immolation Guy" },
+    { "name": "ZYZZ", "role": "Mentor" },
+    { "name": "forsen", "role": "Teacher" }
+  ],
+  "artists": [
+     { "name": "bluberry",    "role": "Sub Badges" },
+     { "name": "?",    "role": "Emotes" },
+     { "name": "?",    "role": "Intro" },
+     { "name": "Flourek",    "role": "Ending Credits" }
   ],
   "programmers": [
-    "ftk",
-    "flourek",
-    "devPoland"
+     { "name": "ftk789",    "role": "Ftk-tts, Redeems,<br> the whole stream basically" },
+     { "name": "Flourek",    "role": "Papers Please, Hotline Luton,<br> Ending Credits" },
+     { "name": "devPoland",    "role": "Poland_bot Creator" }
   ],
-  "editors": {
-    "tiktok": "",
-    "shorts": "",
-    "youtube": "hylight"
-  },
+  "editors": [
+    { "name": "hylight",    "role": "YouTube" },
+    { "name": "DecentBV", "role": "Instagram, TikTok" }
+  ],
   "raid": {
     "totalViewers": 0,
     "raiders": []
   },
   "shoutout": [],
   "moderators": {
-    "mostUseful": [],
-    "cosmetic": [],
-    "makingFunOf": [],
-    "allMods": []
+    "useful": ["Ratatas1g", "nndiana", "Flovrek"],
+    "cosmetic": ["COMMANDA_U", "P4ttie"],
+    "absent": ["Exerpas", "IsMelkony"],
+    "allMods": [
+      "Ratatas1g",
+      "Flovrek",
+      "ftk789",
+      "nndiana"
+    ]
   },
 
   "present": [],

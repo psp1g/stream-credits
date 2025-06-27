@@ -112,14 +112,21 @@ class Credits {
     }
 
     getAll() {
-        postProcess();
+        this.postProcess(); // Fix: call this.postProcess()
+        return this.data;
+    }
+
+    getDefaults() {
+        // Always read fresh from file for live debugging
+        this.data = JSON.parse(fs.readFileSync(DEFAULTS_FILE, 'utf8'));
+        this.postProcess(); // Fix: call this.postProcess()
         return this.data;
     }
 
 
-    postProcess(){
-         // --- TOP CHATTERS ---
-        const chatters = credits.get('messages.chatters') || {};
+    postProcess() { // Fix: remove credits. references
+        // --- TOP CHATTERS ---
+        const chatters = this.get('messages.chatters') || {};
         const chattersArr = Object.entries(chatters).map(([name, count]) => ({ name, count }));
         const topChattersArr = chattersArr.sort((a, b) => b.count - a.count).slice(0, 5);
 
@@ -129,7 +136,7 @@ class Credits {
             topChattersObj[name] = count;
         }
 
-        credits.set('messages.topChatters', topChattersObj);
+        this.set('messages.topChatters', topChattersObj);
     }
 }
 
