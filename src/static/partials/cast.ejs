@@ -1,0 +1,9 @@
+<div class="line">
+    <div class="header">(IN ORDER OF APPEARANCE)</div>
+    <% data.cast.forEach(person => { %>
+        <div class="line-content">
+            <div class="left"><%= person.role %></div>
+            <div class="right <%= person.name ? '' : 'empty-role' %>"><%- person.name || '&nbsp;' %></div>
+        </div>
+    <% }); %>
+</div>

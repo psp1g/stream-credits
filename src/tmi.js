@@ -1,6 +1,6 @@
 const tmi = require('tmi.js');
 const credits = require('./credits');
-// const { appendLog } = require('./data'); // Uncomment to log to file
+const emoteTracker = require('./emotes');
 
 const client = new tmi.Client({
     options: { debug: true },
@@ -8,14 +8,14 @@ const client = new tmi.Client({
         reconnect: true,
         secure: true
     },
-    // identity: {
-    //     username: "Flovrek",
-    // },
-    // channels: [ "ramzes", "flovrek", "caedrel", "forsen" ]
     channels: [ "flovrek" ]
 });
 
-client.connect();
+// Initialize emote tracking when connected
+client.on('connected', async (address, port) => {
+    console.log(`[connected] Connected to ${address}:${port}`);
+    await emoteTracker.initialize('flovrek'); // Replace with your channel name
+});
 
 // Action - Received action message on channel.
 // client.on('action', (channel, userstate, message, self) => {
@@ -141,7 +141,7 @@ client.on('r9kbeta', (channel, enabled) => {
 
 // Raw_message - IRC data was received and parsed.
 client.on('raw_message', (messageCloned, message) => {
-    console.log(`[raw_message] IRC data received: ${message.raw}`);
+    // console.log(`[raw_message] IRC data received: ${message.raw}`);
 });
 
 // Reconnect - Trying to reconnect to server.
@@ -186,9 +186,12 @@ client.on('raided', (channel, username, viewers) => {
  //  -------------- MESSAGES STATS -----------------
 client.on('message', (channel, tags, message, self) => {
 
-    // console.log(`[message]`, JSON.parse(JSON.stringify(tags)), ':', message);
+    console.log(`[message]`, JSON.parse(JSON.stringify(tags)), ':', message);
 
-    username = tags['display-name'] 
+    username = tags['display-name'];
+
+    // ---- EMOTE TRACKING (now handled by emoteTracker) ----
+    emoteTracker.trackEmotes(message, tags.emotes, credits);
 
     if (tags['first-msg']) {
         console.log('FIRST MESSAGE:', username, message);
@@ -236,10 +239,10 @@ client.on('message', (channel, tags, message, self) => {
 
 
 
+
+
     // Print deserialized tags object and message
 });
-
-
 
 // ---------------- SUPPPORT -------------------
 
@@ -348,3 +351,5 @@ client.on('vips', (channel, vips) => {
 client.on('whisper', (from, userstate, message, self) => {
     console.log(`[whisper] ${from}: ${message}`);
 });
+
+client.connect();

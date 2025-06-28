@@ -16,7 +16,7 @@
     "@twurple/eventsub": "^5.3.4",
     "@twurple/eventsub-http": "^7.3.0",
     "@twurple/eventsub-ngrok": "^7.3.0",
-    "axios": "^1.6.8",
+    "axios": "^1.10.0",
     "dotenv": "^16.5.0",
     "ejs": "^3.1.10",
     "express": "^4.21.2",

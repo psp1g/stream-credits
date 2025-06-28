@@ -1,0 +1,28 @@
+<div class="line">
+    <div class="header">EMOTES</div>
+    <br>
+    <div class="container-fluid emotes">
+        <% 
+        const emotesArray = Object.entries(data.emotes.top || {});
+        const rows = [];
+        
+        // Split into rows of 3 items each (left to right, top to bottom)
+        for (let i = 0; i < emotesArray.length; i += 3) {
+            rows.push(emotesArray.slice(i, i + 3));
+        }
+        %>
+        
+        <% rows.forEach(row => { %>
+            <div class="row justify-content-center">
+                <% row.forEach(([emoteName, emoteData]) => { %>
+                    <div class="col-4">
+                        <div class="line-content emote-item">
+                            <img src="<%= emoteData.url %>" alt="<%= emoteName %>" class="emote-img">
+                            <span class="emote-count"> x <%= emoteData.count %></span>
+                        </div>
+                    </div>
+                <% }); %>
+            </div>
+        <% }); %>
+    </div>
+</div>

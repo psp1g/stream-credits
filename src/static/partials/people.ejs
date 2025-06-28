@@ -1,0 +1,31 @@
+
+<div class="line">
+    <div class="header">ARTISTS</div>
+    <% data.artists.forEach(person => { %>
+        <div class="line-content">
+            <div class="left"><%= person.role %></div>
+            <div class="right <%= person.name ? '' : 'empty-role' %>"><%- person.name || '&nbsp;' %></div>
+        </div>
+    <% }); %>
+</div>
+
+<div class="line">
+    <div class="header">EDITORS</div>
+    <% data.editors.forEach(person => { %>
+        <div class="line-content">
+            <div class="left"><%= person.role %></div>
+            <div class="right <%= person.name ? '' : 'empty-role' %>"><%- person.name || '&nbsp;' %></div>
+        </div>
+    <% }); %>
+</div>
+
+<div class="line">
+    <div class="header">PROGRAMMERS</div>
+    <% data.programmers.forEach(person => { %>
+        <div class="line-content">
+            <div class="left"><%- person.role %></div>
+            <div class="right <%- person.name ? '' : 'empty-role' %>"><%- person.name || '&nbsp;' %></div>
+        </div>
+    <% }); %>
+</div>
+

@@ -1,0 +1,27 @@
+<div class="line">
+    <div class="header">MODERATORS</div>
+    <div class="line-content">
+        <div class="left">Most Useful</div>
+        <div class="right">
+            <% data.moderators.useful.forEach(mod => { %>
+                <div> <%= mod %>  </div>
+            <% }); %>
+        </div>
+    </div>
+    <div class="line-content">
+        <div class="left">Cosmetic</div>
+        <div class="right">
+            <% data.moderators.cosmetic.forEach(mod => { %>
+                <div> <%= mod %>  </div>
+            <% }); %>
+        </div>
+    </div>
+    <div class="line-content">
+        <div class="left">Absent</div>
+        <div class="right">
+            <% data.moderators.absent.forEach(mod => { %>
+                <div> <%= mod %>  </div>
+            <% }); %>
+        </div>
+    </div>
+</div>

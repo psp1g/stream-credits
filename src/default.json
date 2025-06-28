@@ -9,16 +9,17 @@
     { "name": "SmileyBS", "role": "Old Friend" },
     { "name": "Ted Kaczynski", "role": "The Mathematician" },
     { "name": "ArrowCS", "role": "The Bug Man" },
-    { "name": "renyan", "role": "Plus Forward Guy" },
-    { "name": "DIMA_WALLHACKS", "role": "The Dolbaeb" },
+    { "name": "DIMA_WALLHACKS", "role": "Dolbaeb" },
     { "name": "MUTY", "role": "Half Life Coach" },
+    { "name": "FURI", "role": "The Father" },
+    { "name": "renyan", "role": "Plus Forward Guy" },
     { "name": "DONA", "role": "Gang Leader" },
     { "name": "ZOIL", "role": "Look Up" },
     { "name": "wuh6", "role": "Wuh" },
+    { "name": "Spaceashes", "role": "HIM" },
     { "name": "Crowbcat", "role": "Alt Account" },
     { "name": "FOXYCS", "role": "Local Femboy" },
     { "name": "whaliin", "role": "MrSwagBoss" },
-    { "name": "Spaceashes", "role": "HIM" },
     { "name": "Ketamine1g", "role": "The Dead Twin " },
     { "name": "", "role": "" },
     { "name": "bLitz",  "role": "The Mongolz IGL" },
@@ -28,7 +29,7 @@
     { "name": "910",    "role": "The Mongolz AWPer" },
     { "name": "", "role": "" },
     { "name": "OTAG", "role": "Scientist, Soldier, Wizard" },
-    { "name": "Summit1g", "role": "Self Immolation Guy" },
+    { "name": "Summit1g", "role": "Self Immolation Stuntman " },
     { "name": "ZYZZ", "role": "Mentor" },
     { "name": "forsen", "role": "Teacher" }
   ],
@@ -100,30 +101,6 @@
     "removed": [],
     "longestStreak": 0,
     "usage": {
-      "OMEGALUL": {
-        "url": "https://static-cdn.jtvnw.net/emoticons/v1/425618/3.0",
-        "count": 2137
-      },
-      "Sadge": {
-        "url": "https://cdn.7tv.app/emote/01HR0C2GB8000DJYPJ6NC0BYK3/3x.webp",
-        "count": 300
-      },
-      "pspBop": {
-        "url": "https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_cafa3032d1744f9793ef2f97f7e0e3b5/default/dark/3.0",
-        "count": 213
-      },
-      "OMEGALULE": {
-        "url": "https://static-cdn.jtvnw.net/emoticons/v1/425618/3.0",
-        "count": 2137
-      },
-      "gaga": {
-        "url": "https://cdn.7tv.app/emote/01HDHDB3W80004BCCZZPM101A2/4x.webp",
-        "count": 300
-      },
-      "pspBopE": {
-        "url": "https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_cafa3032d1744f9793ef2f97f7e0e3b5/default/dark/3.0",
-        "count": 213
-      }
     },
     "top": []
   },

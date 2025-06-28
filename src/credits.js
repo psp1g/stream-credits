@@ -124,7 +124,7 @@ class Credits {
     }
 
 
-    postProcess() { // Fix: remove credits. references
+    postProcess() { 
         // --- TOP CHATTERS ---
         const chatters = this.get('messages.chatters') || {};
         const chattersArr = Object.entries(chatters).map(([name, count]) => ({ name, count }));
@@ -137,6 +137,32 @@ class Credits {
         }
 
         this.set('messages.topChatters', topChattersObj);
+
+        // --- TOP EMOTES ---
+        const emoteUsage = this.get('emotes.usage') || {};
+        const emotesArr = Object.entries(emoteUsage).map(([emoteId, data]) => ({ 
+            id: emoteId, 
+            url: data.url, 
+            count: data.count 
+        }));
+        const topEmotesArr = emotesArr.sort((a, b) => b.count - a.count).slice(0, 18);
+
+        // Convert to object for template { emoteId: { url, count }, ... }
+        const topEmotesObj = {};
+        for (const emote of topEmotesArr) {
+            topEmotesObj[emote.id] = {
+                url: emote.url,
+                count: emote.count
+            };
+        }
+        
+        const firstThreeEmotes = topEmotesArr.slice(0, 3);
+        console.log('Top 3 emotes:');
+        firstThreeEmotes.forEach((emote, idx) => {
+            console.log(`${idx + 1}. ${emote.id}: ${emote.count}`);
+        });
+
+        setByPath(this.data, 'emotes.top', topEmotesObj);
     }
 
     addEmoteUsage(emoteName, emoteUrl = null) {
