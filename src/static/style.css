@@ -228,18 +228,28 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
 
  .left {
     text-align: right;
-    font-size: 4.2rem !important;
+    font-size: 4.2rem ;
     margin-right: 67px;
+    transform: translateY(4px);
 }
 
 
 
  .right {
     text-align: left;
-    font-size: 5rem !important;
+    font-size: 5rem ;
     margin-right: 50px;
     line-height: 2.8rem;
-    text-transform: uppercase1;
+    text-transform: uppercase;
+}
+
+
+.bigtext {
+  font-size: 5rem !important;
+}
+
+.shiftright {
+  transform: translateX(3rem);
 }
 
 .twoColumnsCentered .left, .twoColumnsCentered .right {
@@ -247,6 +257,15 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
     margin: 0px !important;
 
 }
+
+.chatters .left, .chatters .right {
+  width: 40%;
+}
+.chatters{
+  transform: translateX(50px);
+}
+
+
 
 .spacer {
     height: 5rem;
@@ -262,4 +281,33 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
 
 .empty-role{
   height: 1.5rem;
+}
+
+.emote-item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Align content to the right */
+    margin-bottom: 0px;
+    width: 100%;
+}
+
+
+.emotes {
+  transform: translateX(-9rem);
+}
+
+.emote-img {
+    height: 4rem;
+    margin-top: 2rem;
+    margin-right: 1rem;
+    margin-left: auto; /* This pushes the image to the left when it grows */
+    flex-shrink: 0; /* Prevents the image from shrinking */
+    max-width: none; /* Allows image to grow beyond container if needed */
+}
+
+.emote-count {
+    vertical-align: text-top;
+    font-size: 5rem;
+    flex-shrink: 0; /* Prevents text from shrinking */
+    white-space: nowrap; /* Prevents text wrapping */
 }

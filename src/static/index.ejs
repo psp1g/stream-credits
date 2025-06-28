@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stream Credits</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -89,27 +91,110 @@
         </div>
 
 
-        <!-- <div class="spacer"></div> -->
-
-        <!-- <div class="twoColumnsCentered">
-            <div class="line-content">
-                <div class="left">Will</div>
-                <div class="right">
-                    <div>MATT DAMON</div>
-                    <div>BEN AFFLECK</div>
-                    <div>ROBIN WILLIAMS</div>
-                </div>
-            </div>
-        </div>
-      -->
-    
-
+ 
         <div class="line">
-            <div class="header">STATISTICS</div>
+            <div class="header">MESSAGES</div>
             <div class="line-content">
                 <div class="left">Total Messages</div>
                 <div class="right"><%= data.messages.total %></div>
             </div>
+            <div class="line-content">
+                <div class="left">Unique Chatters</div>
+                <div class="right"><%= data.messages.chatterCount %></div>
+            </div>
+            <div class="line-content">
+                <div class="left">First Time Chatters</div>
+                <div class="right"><%= data.messages.firstTimeMessages %></div>
+            </div>
+            <div class="line-content">
+                <div class="left">First Time Testers</div>
+                <div class="right"><%= data.messages.firstTimeTesters %></div>
+            </div>
+        </div>
+
+        <div class="line">
+            <div class="header">TOP CHATTERS</div>
+            <br>
+            <div class="container-fluid chatters">
+                <div class="row">
+                    <!-- Left Column -->
+                    <div class="col-5">
+                        <% 
+                        const topChattersArray = Object.entries(data.messages.topChatters);
+                        const leftColumn = topChattersArray.filter((item, idx) => idx % 2 === 0);
+                        %>
+                        <% leftColumn.forEach(([name, count]) => { %>
+                            <div class="line-content">
+                                <div class="left bigtext shiftright"><%= count %></div>
+                                <div class="right"><%= name %></div>
+                            </div>
+                        <% }); %>
+                    </div>
+                    
+                    <!-- Right Column -->
+                    <div class="col-5">
+                        <% 
+                        const rightColumn = topChattersArray.filter((item, idx) => idx % 2 === 1);
+                        %>
+                        <% rightColumn.forEach(([name, count]) => { %>
+                            <div class="line-content">
+                                <div class="left bigtext shiftright"><%= count %></div>
+                                <div class="right"><%= name %></div>
+                            </div>
+                        <% }); %>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="line">
+            <div class="header">EMOTES</div>
+            <br>
+            <div class="container-fluid emotes">
+                <div class="row justify-content-center">
+                    <% 
+                    const emotesArray = Object.entries(data.emotes.usage);
+                    const col1 = emotesArray.filter((item, idx) => idx % 3 === 0);
+                    const col2 = emotesArray.filter((item, idx) => idx % 3 === 1);
+                    const col3 = emotesArray.filter((item, idx) => idx % 3 === 2);
+                    %>
+                    
+                    <!-- Column 1 -->
+                    <div class="col-3">
+                        <% col1.forEach(([emoteName, emoteData]) => { %>
+                            <div class="line-content emote-item">
+                                <img src="<%= emoteData.url %>" alt="<%= emoteName %>" class="emote-img">
+                                <span class="emote-count"> x <%= emoteData.count %></span>
+                            </div>
+                        <% }); %>
+                    </div>
+                    
+                    <!-- Column 2 -->
+                    <div class="col-3">
+                        <% col2.forEach(([emoteName, emoteData]) => { %>
+                            <div class="line-content emote-item">
+                                <img src="<%= emoteData.url %>" alt="<%= emoteName %>" class="emote-img">
+                                <span class="emote-count"> x <%= emoteData.count %></span>
+                            </div>
+                        <% }); %>
+                    </div>
+                    
+                    <!-- Column 3 -->
+                    <div class="col-3">
+                        <% col3.forEach(([emoteName, emoteData]) => { %>
+                            <div class="line-content emote-item">
+                                <img src="<%= emoteData.url %>" alt="<%= emoteName %>" class="emote-img">
+                                <span class="emote-count"> x <%= emoteData.count %></span>
+                            </div>
+                        <% }); %>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="line">
+            <div class="header">MODERATION</div>
             <div class="line-content">
                 <div class="left">Bans</div>
                 <div class="right"><%= data.moderation.bans %></div>
@@ -118,23 +203,33 @@
                 <div class="left">Timeouts</div>
                 <div class="right"><%= data.moderation.timeouts %></div>
             </div>
+            <div class="line-content">
+                <div class="left">Juicers Shot</div>
+                <div class="right"><%= data.blicky.xqc %></div>
+            </div>
+            <div class="line-content">
+                <div class="left">Poki Fans Shot</div>
+                <div class="right"><%= data.blicky.pokimane %></div>
+            </div>
+            <div class="line-content">
+                <div class="left">Hasan Fans Shot</div>
+                <div class="right"><%= data.blicky.hasanabi %></div>
+            </div>
+            <div class="line-content">
+                <div class="left">Mizkif Fans Shot</div>
+                <div class="right"><%= data.blicky.mizkif %></div>
+            </div>
         </div>
+ 
 
-        <div class="line">
-            <div class="header">TOP CHATTERS</div>
-            <% Object.entries(data.messages.topChatters).forEach(([name, count]) => { %>
-                <div class="line-content">
-                    <div class="left"><%= count %> messages</div>
-                    <div class="right"><%= name %></div>
-                </div>
-            <% }); %>
-        </div>
+
     </div>
 
     <img id="background" src="img/output.webp" alt="Background">
 
-    <!-- Move scripts to bottom -->
-    <!-- Add jQuery Color plugin -->
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js" crossorigin="anonymous"></script>
     <script src="script.js"></script>
 </body>

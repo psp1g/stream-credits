@@ -19,11 +19,11 @@ function scrollAnimation() {
         
         $('#scrolling')
             .css({ top: '125%', display: 'block' })
-            .animate({ top: `-${height + 300}px` }, { 
-                duration: time, 
-                queue: false, 
-                easing: "linear" 
-            });
+            // .animate({ top: `-${height + 300}px` }, { 
+            //     duration: time, 
+            //     queue: false, 
+            //     easing: "linear" 
+            // });
         
          $('#logocontainer')
             .animate({ 'opacity': 0 }, { 

@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const DATA_FILE = path.join(__dirname, 'logs/data.json');
+const DATA_FILE = path.join(__dirname, 'logs/DANTA.json');
 const DEFAULTS_FILE = path.join(__dirname, 'default.json');
 
 // Utility: get/set/increment/append by path
@@ -93,7 +93,7 @@ class Credits {
 
     set(path, value) {
         setByPath(this.data, path, value);
-        // this.save();
+        this.save();
     }
 
     increment(path) {
@@ -103,12 +103,12 @@ class Credits {
 
     add(path, value) {
         addByPath(this.data, path, value);
-        // this.save();
+        this.save();
     }
 
     append(path, value) {
         appendByPath(this.data, path, value);
-        // this.save();
+        this.save();
     }
 
     getAll() {
@@ -128,7 +128,7 @@ class Credits {
         // --- TOP CHATTERS ---
         const chatters = this.get('messages.chatters') || {};
         const chattersArr = Object.entries(chatters).map(([name, count]) => ({ name, count }));
-        const topChattersArr = chattersArr.sort((a, b) => b.count - a.count).slice(0, 5);
+        const topChattersArr = chattersArr.sort((a, b) => b.count - a.count).slice(0, 20);
 
         // Convert back to object { username: count, ... }
         const topChattersObj = {};
@@ -137,6 +137,33 @@ class Credits {
         }
 
         this.set('messages.topChatters', topChattersObj);
+    }
+
+    addEmoteUsage(emoteName, emoteUrl = null) {
+        const emotePath = `emotes.usage.${emoteName}`;
+        const existingEmote = this.get(emotePath);
+        
+        if (existingEmote) {
+            // Emote exists, increment count
+            this.increment(`${emotePath}.count`);
+        } else {
+            // New emote, create entry
+            this.set(emotePath, {
+                url: emoteUrl || "",
+                count: 1
+            });
+        }
+    }
+
+    // Update top emotes based on usage
+    updateTopEmotes() {
+        const usage = this.get('emotes.usage') || {};
+        const sortedEmotes = Object.entries(usage)
+            .map(([name, data]) => ({ name, ...data }))
+            .sort((a, b) => b.count - a.count)
+            .slice(0, 10); // Top 10 emotes
+        
+        this.set('emotes.top', sortedEmotes);
     }
 }
 

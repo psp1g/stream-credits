@@ -3,7 +3,7 @@ const credits = require('./credits');
 // const { appendLog } = require('./data'); // Uncomment to log to file
 
 const client = new tmi.Client({
-    options: { debug: false },
+    options: { debug: true },
     connection: {
         reconnect: true,
         secure: true

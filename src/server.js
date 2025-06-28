@@ -23,13 +23,13 @@ app.use(express.static(path.join(__dirname, 'static'), {
 
 // API endpoint for raw JSON data
 app.get('/data', (req, res) => {
-    res.json(credits.getAll());
+    res.json(credits.getDefaults());
 });
 
 // Serve templated HTML with data at "/"
 app.get('/', (req, res) => {
-    // const data = credits.getAll();
-    const data = credits.getDefaults();
+    const data = credits.getAll();
+    // const data = credits.getDefaults();
     res.render('index', { data }); // Pass data to template
 });
 
