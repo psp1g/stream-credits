@@ -1,6 +1,7 @@
 const tmi = require('tmi.js');
 const credits = require('./credits');
 const emoteTracker = require('./emotes');
+require('dotenv').config();
 
 const client = new tmi.Client({
     options: { debug: true },
@@ -8,13 +9,13 @@ const client = new tmi.Client({
         reconnect: true,
         secure: true
     },
-    channels: [ "flovrek" ]
+    channels: [ process.env.TWITCH_CHANNEL_NAME ]
 });
 
 // Initialize emote tracking when connected
 client.on('connected', async (address, port) => {
     console.log(`[connected] Connected to ${address}:${port}`);
-    await emoteTracker.initialize('flovrek'); // Replace with your channel name
+    await emoteTracker.initialize(process.env.TWITCH_CHANNEL_NAME); // Replace with your channel name
 });
 
 // Action - Received action message on channel.

@@ -3,7 +3,7 @@ const path = require('path');
 const credits = require('./credits'); // Use your credits singleton
 
 const app = express();
-const PORT = 3001;
+const PORT = 3000;
 
 // Set EJS as template engine
 app.set('view engine', 'ejs');
@@ -23,7 +23,7 @@ app.use(express.static(path.join(__dirname, 'static'), {
 
 // API endpoint for raw JSON data
 app.get('/data', (req, res) => {
-    res.json(credits.getDefaults());
+    res.json(credits.getAll());
 });
 
 // Serve templated HTML with data at "/"

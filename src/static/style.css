@@ -8,6 +8,9 @@ body {
     color: #ccc;
     position: absolute;
   }
+
+
+/* END CRT */
   
 @font-face {
   font-family: 'CustomFont';
@@ -178,7 +181,7 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
   width: 100vw;
   top: -10vh;
   left: 0;
-  position: absolute;
+  position: fixed;
   height: 112vh;
   z-index: -1;
 }
@@ -248,8 +251,22 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
   font-size: 5rem !important;
 }
 
+.midtext {
+  font-size: 4rem !important;
+  line-height: 4rem;
+}
+
+.smoltext {
+  font-size: 2.5rem !important;
+  line-height: 5rem;
+}
+
 .shiftright {
   transform: translateX(3rem);
+}
+
+.shiftleft {
+    transform: translateX(-1.5rem);
 }
 
 .twoColumnsCentered .left, .twoColumnsCentered .right {
@@ -268,7 +285,7 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
 
 
 .spacer {
-    height: 5rem;
+    height: 15rem;
     flex-shrink: 0; /* Prevents the spacer from shrinking in flex containers */
 }
 
@@ -284,7 +301,7 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
 }
 
 .emotes {
-  transform: translateX(-5rem);
+  transform: translateX(-9rem);
 }
 
 .emotes .row {
@@ -305,7 +322,7 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    margin-bottom: 2rem;
+    margin-bottom: 0rem;
     width: 100%;
 }
 
@@ -325,4 +342,107 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
     white-space: nowrap;
     text-align: left;
     width: 12rem;
+}
+
+
+
+.raids {
+  transform: translateX(-15rem);
+}
+
+
+
+.centeredgrid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    width: 100%;
+    transform: translateX(-1.5rem);
+}
+
+.centeredgrid-item {
+    flex: 1 1 30%; /* Grow, shrink, base 30% width */
+    min-width: 250px; /* Minimum width before wrapping */
+    max-width: 33.333%; /* Maximum 3 per row */
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.centeredgrid-item .right {
+    text-align: center !important;
+    transform: none !important;
+    margin: 0 !important;
+    width: 100%;
+}
+
+/* Dense version with 4 columns */
+.densegrid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    width: 90%;
+}
+
+.densegrid-item {
+    flex: 1 1 22%; /* Grow, shrink, base 22% width for 4 columns */
+    min-width: 180px; /* Smaller minimum width */
+    max-width: 25%; /* Maximum 4 per row */
+    text-align: center;
+    font-size: 2.4rem; /* Reduced from 3rem */
+    margin-bottom: 0.5rem; /* Reduced from 1rem */
+    text-align: center !important;
+    transform: none !important;
+    margin: 0 !important;
+    width: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap; /* Prevent text wrapping */
+}
+
+.densegrid-item span {
+    display: inline-block;
+    white-space: nowrap; /* Prevent individual spans from wrapping */
+    margin: 0 0.25rem; /* Small spacing between spans */
+}
+
+
+.sponsor img {
+  width: 400px;
+  height: 200px;
+}
+
+
+
+
+  @keyframes logoflicker {
+    from {
+      filter: contrast(0.7) blur(1px) 
+          drop-shadow(0.5px 0 0 #d32e98cc) 
+          drop-shadow(-1px 0 0 #6ac05fcc);
+        }
+        to {
+      filter: contrast(0.7) blur(1px) 
+          drop-shadow(1px 0.25px 1px #d32e98cc) 
+          drop-shadow(-0.5px -0.25px 1px #6ac05fcc);
+        }
+      }
+
+      
+    .logos {
+      width: 100vw;
+      height: 50vw;
+      transform: translateX(-3rem);
+      filter: contrast(0.7);
+      /* filter: contrast(0.7)  
+          drop-shadow(0.0015rem 0 0.0015rem #ea36afcc) 
+          drop-shadow(-0.003rem 0 0.0005rem #75fa69cc); */
+  animation-duration: 0.001s;
+  /* animation-name: logoflicker; */
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 }

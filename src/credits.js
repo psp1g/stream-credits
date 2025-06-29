@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const DATA_FILE = path.join(__dirname, 'logs/DANTA.json');
+const DATA_FILE = path.join(__dirname, 'logs/dataga.json');
 const DEFAULTS_FILE = path.join(__dirname, 'default.json');
 
 // Utility: get/set/increment/append by path
@@ -60,8 +60,8 @@ function addByPath(obj, path, value) {
 class Credits {
     constructor() {
         this.defaults = JSON.parse(fs.readFileSync(DEFAULTS_FILE, 'utf8'));
-        // this.data = this.load();
-        this.data = this.defaults;
+        this.data = this.load();
+        // this.data = this.defaults;
     }
 
     load() {

@@ -1,0 +1,52 @@
+<div class="line sponsor">
+    <div class="header">THIS STREAM IS BROUGHT TO YOU BY</div>
+ 
+    <!-- <img src="img/sususterja.webp" class="shiftleft" alt=""> -->
+    <div class="shiftleft midtext w-50">The State of Sususterja</div>
+    <img src="img/sususterjawhite.png" class="shiftleft mt-3 mb-4" alt="">
+
+
+    <div class="row">
+        <div class="col-6">
+            <div class="header m-0 mb-4">
+                Subscribers
+            </div>
+            <div class="densegrid">
+                <% (data.support.subscribers || []).forEach(username => { %>
+                    <div class="densegrid-item">
+                        <%= username %>
+                    </div>
+                <% }); %>
+            </div>
+        </div>
+        <div class="col-6">
+            
+            <div class="header m-0 mb-4">
+                Gifters
+            </div>
+            <div class="densegrid">
+                <% (data.support.gifters || []).forEach(username => { %>
+                    <div class="densegrid-item">
+                        <%= username %>
+                    </div>
+                <% }); %>
+            </div>
+            
+            <br>
+           
+            <div class="header m-0 mb-4">
+                Bits
+            </div>
+            <div class="densegrid">
+                <% (data.support.cheers.users || []).forEach(user => { %>
+                    <div class="densegrid-item">
+                        <%= user.username %> 
+                    </div>
+                <% }); %>
+            </div>
+
+        </div>
+    </div>
+   
+
+</div>

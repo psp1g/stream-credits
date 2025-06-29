@@ -4,7 +4,7 @@ $(document).ready(function() {
 
 function scrollAnimation() {
     const height = $('#scrolling').height();
-    const pixelsPerSecond = 70; // Adjust this value to control speed
+    const pixelsPerSecond = 100; // Adjust this value to control speed
     const time = (height + 300) / pixelsPerSecond * 1000; // Convert to milliseconds
 
     console.log("Starting animation, height:", height, "time:", time);

@@ -19,6 +19,7 @@
     { "name": "Spaceashes", "role": "HIM" },
     { "name": "Crowbcat", "role": "Alt Account" },
     { "name": "FOXYCS", "role": "Local Femboy" },
+    { "name": "SL3ID3R", "role": "Runboost Stunt Assistant" },
     { "name": "whaliin", "role": "MrSwagBoss" },
     { "name": "Ketamine1g", "role": "The Dead Twin " },
     { "name": "", "role": "" },
@@ -69,13 +70,12 @@
   "creditedInHalfLifeSpeedrun": [],
 
   "support": {
-    "topGifters": [],
-    "subs": {
-      "gifted": 0,
-      "resub": 0,
-      "new": 0,
-      "users": []
-    },
+    "totalSubs": 0,
+    "giftsubCount": 0,
+    "resubCount": 0,
+    "newsubCount": 0,
+    "gifters": [],
+    "subscribers": [],
     "cheers": {
       "total": 0,
       "users": []
