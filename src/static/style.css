@@ -1,14 +1,24 @@
 body {
     background: #1a1a1a;
     font-family: sans-serif;
-    margin: auto;
-    width: 1850px;
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    min-height: 100vh;
     text-align: center;
     font-size: 2rem;
     color: #ccc;
+    filter: blur(0.8px);
     position: absolute;
-  }
+    /* Remove: width: 1850px; */
+    /* Remove: margin: auto; */
+}
 
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
 
 /* END CRT */
   
@@ -23,6 +33,7 @@ body {
 * {
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* Internet Explorer 10+ */
+    box-sizing: border-box;
 }
 
 /* Hide scrollbars for WebKit browsers (Chrome, Safari, Edge) */
@@ -47,13 +58,13 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
 /* CRT */
 
   html { 
-        text-shadow: 0.03rem 0 0.03rem #ea36afcc, -0.06rem 0 0.01rem #75fa69cc;
+        text-shadow: 0.03rem 0 0.03rem #ea36afcc, -0.06rem 0 0.01rem #75fa69cc, 0 2px 6px #000a;
         letter-spacing: 0.06em;
         animation-duration: 0.001s;
-        animation-name: textflicker;
+        /* animation-name: textflicker; */
         animation-iteration-count: infinite;
         animation-direction: alternate;
-        filter: blur(0.8px);
+
         }
 
  @keyframes textflicker {
@@ -167,6 +178,7 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
     width: 100vw;
     height: 100vh;
     background-color: black;
+    position: absolute;
   }
   
   #psplogo{
@@ -177,13 +189,12 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
   top: -106px;
 }
 
-#background{
-  width: 100vw;
-  top: -10vh;
-  left: 0;
-  position: fixed;
-  height: 112vh;
-  z-index: -1;
+#background {
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    pointer-events: none;
 }
 
 .line {

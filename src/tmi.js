@@ -18,10 +18,171 @@ client.on('connected', async (address, port) => {
     await emoteTracker.initialize(process.env.TWITCH_CHANNEL_NAME); // Replace with your channel name
 });
 
-// Action - Received action message on channel.
-// client.on('action', (channel, userstate, message, self) => {
-//     console.log(`[action] ${userstate['display-name']}: ${message}`);
+
+// Raided - Channel is now being raided by another broadcaster.
+client.on('raided', (channel, username, viewers) => {
+
+    credits.append('raid.raiders', {username: username, viewers: viewers} );
+    credits.add("raid.totalViewers", viewers);
+
+    console.log(`[raided] ${channel} raided by ${username} with ${viewers} viewers`);
+});
+
+
+ //  -------------- MESSAGES STATS -----------------
+client.on('message', (channel, tags, message, self) => {
+
+    // console.log(`[message]`, JSON.parse(JSON.stringify(tags)), ':', message);
+
+    username = tags['display-name'];
+
+    if (tags['first-msg']) {
+        console.log('FIRST MESSAGE:', username, message);
+        credits.increment('messages.firstTimeMessages');
+    }
+
+
+    if (message === 'wuh') {
+        console.log('AMOGUS:', credits.getAll());
+    }
+    
+    if (message.includes('present') || message.includes('late')) {
+        credits.append('present', tags['display-name']);
+    }
+
+
+    // if  halflife in cateagory
+    if (message === 'F1' || message === 'E') {
+        credits.append('creditedInHalfLifeSpeedrun', tags['display-name']);
+    }
+
+    // ---- MESSAGE STAT CATEGORY ------
+    credits.increment('messages.total');
+
+    // update how many messages per chatter also chatterCount
+    const chatterPath = `messages.chatters.${username}`;
+    if (credits.get(chatterPath) === undefined) {
+        credits.set(chatterPath, 1);
+        credits.increment('messages.chatterCount');
+    } else {
+        credits.increment(chatterPath);
+    }
+
+    // track attendeing moderatrors
+    if (tags['mod']) {
+        const chatterPath = `stream.moderators.${username}`;
+        if (credits.get(chatterPath) === undefined) {
+            credits.set(chatterPath, 0);
+        }else{
+            credits.add(chatterPath, 1);
+            
+        }
+    }
+
+    // ---- EMOTE SPECIFIC ----
+    if (tags['first-msg']) {
+        if (message.includes('test')) {
+            credits.increment('emotes.firstTimeTesters');
+        }
+    }
+
+    // ---- EMOTE TRACKING (now handled by emoteTracker) ----
+    emoteTracker.trackEmotes(message, tags.emotes, credits);
+
+
+
+
+
+});
+
+// ---------------- SUPPPORT -------------------
+
+// Cheer - Username has cheered to a channel.
+client.on('cheer', (channel, tags, message) => {
+    credits.append('support.cheers.users', {username: tags["display-name"], amount: tags['bits']} );
+    credits.add("raid.totalViewers", viewers);
+    console.log(`[cheer] ${userstate['display-name']} cheered: ${message}`);
+});
+
+
+// Subgift - Username gifted a subscription to recipient in a channel.
+client.on('subgift', (channel, username, streakMonths, recipient, methods, userstate) => {
+    credits.increment('support.subs.gifted');
+    credits.append('support.subs.users', username);
+    console.log(`[subgift] ${username} gifted a sub to ${recipient} in ${channel} (streak: ${streakMonths})`);
+});
+
+// Resub - Username has resubbed on a channel.
+client.on('resub', (channel, username, streakMonths, msg, userstate, methods) => {
+    credits.increment('support.subs.resub');
+    credits.append('support.subs.users', username);
+    console.log(`[resub] ${username} resubbed in ${channel} (streak: ${streakMonths}): ${msg}`);
+});
+
+
+// Submysterygift - Username is gifting a subscription to someone in a channel.
+client.on('submysterygift', (channel, username, numbOfSubs, methods, userstate) => {
+    credits.add('support.subs.gifted', numbOfSubs);
+    // userstate["msg-param-sender-count"]
+    console.log(`[submysterygift] ${username} is gifting ${numbOfSubs} subs in ${channel}`);
+});
+
+
+// Subscription - Username has subscribed to a channel.
+client.on('subscription', (channel, username, methods, message, userstate) => {
+    credits.increment('support.subs.new');
+    credits.append('support.subs.users', username);
+    console.log(`[subscription] ${username} subscribed in ${channel}: ${message}`);
+});
+
+
+
+// Ban - Username has been banned on a channel.
+// client.on('ban', (channel, username, reason, userstate) => {
+//     console.log(`[ban] ${username} was banned in ${channel}. Reason: ${reason}`);
 // });
+
+// // Timeout - Username has been timed out on a channel.
+// client.on('timeout', (channel, username, reason, duration, userstate) => {
+
+//     console.log(`[timeout] ${username} timed out in ${channel} for ${duration}s. Reason: ${reason}`);
+// });
+
+// Messagedeleted - Message was deleted/removed.
+client.on('messagedeleted', (channel, username, deletedMessage, userstate) => {
+    credits.increment("moderation.deletedMessages");
+
+    console.log(`[messagedeleted] ${username}'s message deleted in ${channel}: ${deletedMessage}`);
+});
+
+
+
+
+// Unhost - Channel ended the current hosting.
+client.on('unhost', (channel, viewers) => {
+    console.log(`[unhost] ${channel} ended hosting (viewers: ${viewers})`);
+});
+
+// Unmod - Someone got unmodded on a channel.
+client.on('unmod', (channel, username) => {
+    console.log(`[unmod] ${username} was unmodded in ${channel}`);
+});
+
+// VIPs - Received the list of VIPs of a channel.
+client.on('vips', (channel, vips) => {
+    console.log(`[vips] VIPs in ${channel}: ${vips.join(', ')}`);
+});
+
+// Whisper - Received a whisper.
+client.on('whisper', (from, userstate, message, self) => {
+    console.log(`[whisper] ${from}: ${message}`);
+});
+
+
+
+
+
+
 
 // Anongiftpaidupgrade - Username is continuing the Gift Sub they got from an anonymous user in channel.
 client.on('anongiftpaidupgrade', (channel, username, userstate) => {
@@ -171,186 +332,5 @@ client.on('subscribers', (channel, enabled) => {
 });
 
 
-
-
-
-// Raided - Channel is now being raided by another broadcaster.
-client.on('raided', (channel, username, viewers) => {
-
-    credits.append('raid.raiders', {username: username, viewers: viewers} );
-    credits.add("raid.totalViewers", viewers);
-
-    console.log(`[raided] ${channel} raided by ${username} with ${viewers} viewers`);
-});
-
-
- //  -------------- MESSAGES STATS -----------------
-client.on('message', (channel, tags, message, self) => {
-
-    console.log(`[message]`, JSON.parse(JSON.stringify(tags)), ':', message);
-
-    username = tags['display-name'];
-
-    // ---- EMOTE TRACKING (now handled by emoteTracker) ----
-    emoteTracker.trackEmotes(message, tags.emotes, credits);
-
-    if (tags['first-msg']) {
-        console.log('FIRST MESSAGE:', username, message);
-        credits.increment('messages.firstTimeMessages');
-    }
-
-
-    if (message === 'wuh') {
-        console.log('AMOGUS:', credits.getAll());
-    }
-    
-    if (message.includes('present') || message.includes('late')) {
-        credits.append('present', tags['display-name']);
-    }
-
-
-    // if  halflife in cateagory
-    if (message === 'F1' || message === 'E') {
-        credits.append('creditedInHalfLifeSpeedrun', tags['display-name']);
-    }
-
-    // ---- MESSAGE STAT CATEGORY ------
-    credits.increment('messages.total');
-
-    // update how many messages per chatter also chatterCount
-    const chatterPath = `messages.chatters.${username}`;
-    if (credits.get(chatterPath) === undefined) {
-        credits.set(chatterPath, 1);
-        credits.increment('messages.chatterCount');
-    } else {
-        credits.increment(chatterPath);
-    }
-
-
-
-
-    // ---- EMOTE SPECIFIC ----
-    if (tags['first-msg']) {
-        if (message.includes('test')) {
-            credits.increment('emotes.firstTimeTesters');
-        }
-    }
-
-
-
-
-
-
-
-    // Print deserialized tags object and message
-});
-
-// ---------------- SUPPPORT -------------------
-
-// Cheer - Username has cheered to a channel.
-client.on('cheer', (channel, tags, message) => {
-    credits.append('support.cheers.users', {username: tags["display-name"], amount: tags['bits']} );
-    credits.add("raid.totalViewers", viewers);
-    console.log(`[cheer] ${userstate['display-name']} cheered: ${message}`);
-});
-
-
-// Subgift - Username gifted a subscription to recipient in a channel.
-client.on('subgift', (channel, username, streakMonths, recipient, methods, userstate) => {
-    credits.increment('support.subs.gifted');
-    credits.append('support.subs.users', username);
-    console.log(`[subgift] ${username} gifted a sub to ${recipient} in ${channel} (streak: ${streakMonths})`);
-});
-
-// Resub - Username has resubbed on a channel.
-client.on('resub', (channel, username, streakMonths, msg, userstate, methods) => {
-    credits.increment('support.subs.resub');
-    credits.append('support.subs.users', username);
-    console.log(`[resub] ${username} resubbed in ${channel} (streak: ${streakMonths}): ${msg}`);
-});
-
-
-// Submysterygift - Username is gifting a subscription to someone in a channel.
-client.on('submysterygift', (channel, username, numbOfSubs, methods, userstate) => {
-    credits.add('support.subs.gifted', numbOfSubs);
-    // userstate["msg-param-sender-count"]
-    console.log(`[submysterygift] ${username} is gifting ${numbOfSubs} subs in ${channel}`);
-});
-
-
-// Subscription - Username has subscribed to a channel.
-client.on('subscription', (channel, username, methods, message, userstate) => {
-    credits.increment('support.subs.new');
-    credits.append('support.subs.users', username);
-    console.log(`[subscription] ${username} subscribed in ${channel}: ${message}`);
-});
-
-
-
-// Ban - Username has been banned on a channel.
-client.on('ban', (channel, username, reason, userstate) => {
-    credits.increment('moderation.bans');
-    console.log(`[ban] ${username} was banned in ${channel}. Reason: ${reason}`);
-
-
-});
-
-// Timeout - Username has been timed out on a channel.
-client.on('timeout', (channel, username, reason, duration, userstate) => {
-
-    credits.increment("moderation.timeouts");
-    credits.add("moderation.totalTimeoutSeconds", duration);
-
-    //   BLICKY 
-    if (reason && reason.toLowerCase().includes("emote detected")) {
-        
-        const lowerReason = reason.toLowerCase();
-        
-        if (lowerReason.includes("xqc")) {
-            credits.increment("blicky.xqc");
-        }
-        if (lowerReason.includes("hasan")) {
-            credits.increment("blicky.hasanabi");
-        }
-        if (lowerReason.includes("poki")) {
-            credits.increment("blicky.pokimane");
-        }
-        if (lowerReason.includes("miz")) {
-            credits.increment("blicky.mizkif");
-        }
-    }
-
-    console.log(`[timeout] ${username} timed out in ${channel} for ${duration}s. Reason: ${reason}`);
-});
-
-// Messagedeleted - Message was deleted/removed.
-client.on('messagedeleted', (channel, username, deletedMessage, userstate) => {
-    credits.increment("moderation.deletedMessages");
-
-    console.log(`[messagedeleted] ${username}'s message deleted in ${channel}: ${deletedMessage}`);
-});
-
-
-
-
-// Unhost - Channel ended the current hosting.
-client.on('unhost', (channel, viewers) => {
-    console.log(`[unhost] ${channel} ended hosting (viewers: ${viewers})`);
-});
-
-// Unmod - Someone got unmodded on a channel.
-client.on('unmod', (channel, username) => {
-    console.log(`[unmod] ${username} was unmodded in ${channel}`);
-});
-
-// VIPs - Received the list of VIPs of a channel.
-client.on('vips', (channel, vips) => {
-    console.log(`[vips] VIPs in ${channel}: ${vips.join(', ')}`);
-});
-
-// Whisper - Received a whisper.
-client.on('whisper', (from, userstate, message, self) => {
-    console.log(`[whisper] ${from}: ${message}`);
-});
 
 client.connect();

@@ -111,6 +111,16 @@ class Credits {
         this.save();
     }
 
+    appendUnique(path, value) {
+        const currentArray = this.get(path) || [];
+        if (!currentArray.includes(value)) {
+            appendByPath(this.data, path, value);
+            this.save();
+            return true; // Item was added
+        }
+        return false; // Item already exists
+    }
+
     getAll() {
         this.postProcess(); // Fix: call this.postProcess()
         return this.data;
@@ -136,7 +146,28 @@ class Credits {
             topChattersObj[name] = count;
         }
 
-        this.set('messages.topChatters', topChattersObj);
+        setByPath(this.data, 'messages.topChatters', topChattersObj);
+
+        // --- TOP MODERATORS ---
+        const moderators = this.get('stream.moderators') || [];
+        
+        // Check if moderators is an array, if not convert it
+        let moderatorsArray;
+        if (Array.isArray(moderators)) {
+            moderatorsArray = moderators;
+        } else {
+            // If it's an object, get the keys (usernames)
+            moderatorsArray = Object.keys(moderators);
+        }
+        
+        // Sort moderators by message count (if available) or keep original order
+        const sortedModerators = moderatorsArray.sort((a, b) => {
+            const aCount = this.get(`messages.chatters.${a}`) || 0;
+            const bCount = this.get(`messages.chatters.${b}`) || 0;
+            return bCount - aCount; // Sort by message count descending
+        });
+
+        setByPath(this.data, 'stream.moderatorsSorted', sortedModerators);
 
         // --- TOP EMOTES ---
         const emoteUsage = this.get('emotes.usage') || {};
@@ -156,14 +187,9 @@ class Credits {
             };
         }
         
-        const firstThreeEmotes = topEmotesArr.slice(0, 3);
-        console.log('Top 3 emotes:');
-        firstThreeEmotes.forEach((emote, idx) => {
-            console.log(`${idx + 1}. ${emote.id}: ${emote.count}`);
-        });
-
         setByPath(this.data, 'emotes.top', topEmotesObj);
     }
+
 
     addEmoteUsage(emoteName, emoteUrl = null) {
         const emotePath = `emotes.usage.${emoteName}`;

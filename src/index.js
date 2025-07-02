@@ -1,4 +1,5 @@
 require('dotenv').config();
 require('./server');
 require('./tmi');
-// require('./eventsub');
+require('./tes');
+require('./tesEvents');

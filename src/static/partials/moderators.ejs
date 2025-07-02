@@ -1,27 +1,28 @@
 <div class="line">
     <div class="header">MODERATORS</div>
+    <% 
+        const moderators = data.stream.moderatorsSorted || data.stream.moderators || [];
+        const topMods = moderators.slice(0, 3);
+        const cosmeticMods = moderators.slice(3);
+    %>
+    <% if (topMods.length > 0) { %>
     <div class="line-content">
         <div class="left">Most Useful</div>
         <div class="right">
-            <% data.moderators.useful.forEach(mod => { %>
-                <div> <%= mod %>  </div>
+            <% topMods.forEach(mod => { %>
+                <div><%= mod %></div>
             <% }); %>
         </div>
     </div>
+    <% } %>
+    <% if (cosmeticMods.length > 0) { %>
     <div class="line-content">
         <div class="left">Cosmetic</div>
         <div class="right">
-            <% data.moderators.cosmetic.forEach(mod => { %>
-                <div> <%= mod %>  </div>
+            <% cosmeticMods.forEach(mod => { %>
+                <div><%= mod %></div>
             <% }); %>
         </div>
     </div>
-    <div class="line-content">
-        <div class="left">Absent</div>
-        <div class="right">
-            <% data.moderators.absent.forEach(mod => { %>
-                <div> <%= mod %>  </div>
-            <% }); %>
-        </div>
-    </div>
+    <% } %>
 </div>

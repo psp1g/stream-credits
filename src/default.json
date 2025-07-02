@@ -1,6 +1,10 @@
 {
   "channel": "",
-  "categories": [],
+  "stream" : {
+    "moderators": {},
+    "titleHistory": [],
+    "categoryHistory": []
+  },
   "cast": [
     { "name": "rafael", "role": "Best Friend" },
     { "name": "deme", "role": "The ADHD Girl" },
@@ -11,7 +15,7 @@
     { "name": "ArrowCS", "role": "The Bug Man" },
     { "name": "DIMA_WALLHACKS", "role": "Dolbaeb" },
     { "name": "MUTY", "role": "Half Life Coach" },
-    { "name": "FURI", "role": "The Father" },
+    { "name": "FURI", "role": "Father Grigori" },
     { "name": "renyan", "role": "Plus Forward Guy" },
     { "name": "DONA", "role": "Gang Leader" },
     { "name": "ZOIL", "role": "Look Up" },
