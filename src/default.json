@@ -3,7 +3,8 @@
   "stream" : {
     "moderators": {},
     "titleHistory": [],
-    "categoryHistory": []
+    "categoryHistory": [],
+    "specialGuests": []
   },
   "cast": [
     { "name": "rafael", "role": "Best Friend" },
@@ -69,7 +70,7 @@
       "nndiana"
     ]
   },
-
+  "presentStreak": [],
   "present": [],
   "creditedInHalfLifeSpeedrun": [],
 
@@ -94,7 +95,6 @@
     "total": 0,
     "chatterCount": 0,
     "chatters": {
-      "test1g": 1
     },
     "topChatters": [],
     "firstTimeMessages": 0,

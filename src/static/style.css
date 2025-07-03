@@ -7,7 +7,6 @@ body {
     min-height: 100vh;
     text-align: center;
     font-size: 2rem;
-    color: #ccc;
     filter: blur(0.8px);
     position: absolute;
     /* Remove: width: 1850px; */
@@ -81,8 +80,10 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
 *{
   font-family: 'CustomFont', sans-serif;
   letter-spacing: 0.2rem;
-  color: rgb(233, 233, 233);
+  color: rgb(255, 255, 255);
+  /* color: rgb(255, 145, 0); */
 }
+
 
   a {
     color: inherit;
@@ -262,6 +263,10 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
   font-size: 5rem !important;
 }
 
+.biggertext {
+  font-size: 7rem !important;
+}
+
 .midtext {
   font-size: 4rem !important;
   line-height: 4rem;
@@ -312,12 +317,11 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
 }
 
 .emotes {
-  transform: translateX(-9rem);
+  transform: translateX(-3rem);
 }
 
 .emotes .row {
     display: flex;
-    justify-content: flex-start !important; /* Override Bootstrap's center alignment */
     align-items: flex-start;
 }
 
@@ -444,11 +448,11 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
       }
 
       
-    .logos {
+.logos {
       width: 100vw;
       height: 50vw;
       transform: translateX(-3rem);
-      filter: contrast(0.7);
+      /* filter: contrast(0.7); */
       /* filter: contrast(0.7)  
           drop-shadow(0.0015rem 0 0.0015rem #ea36afcc) 
           drop-shadow(-0.003rem 0 0.0005rem #75fa69cc); */
@@ -457,3 +461,14 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
   animation-iteration-count: infinite;
   animation-direction: alternate;
 }
+
+.discordlogo {
+  width: 40vw;
+  height: 20vw;
+  transform: translateY(-3rem);
+}
+
+.closeLineHeight {
+  line-height: 4rem;
+}
+

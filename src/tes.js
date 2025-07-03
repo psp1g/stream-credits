@@ -11,7 +11,10 @@ const subscriptionConfig = {
         conditions: { user_id: "415401864" }
     },
     "channel.subscribe": {},
-    "channel.ban": {}
+    "channel.ban": {},
+    "stream.online": {},
+    "stream.offline": {},
+    "channel.shared_chat.begin": {}
 };
 
 

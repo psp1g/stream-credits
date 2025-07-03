@@ -12,7 +12,44 @@
 </div>
 <% } %>
 
+
 <div class="line">
+    <div class="header">LONGEST PRESENT STREAK</div>
+    <br>
+    <div class="container-fluid chatters">
+        <div class="row">
+            <% 
+            const topChattersArray = Object.entries(data.presentStreak)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 10);
+            const leftColumn = topChattersArray.filter((item, idx) => idx % 2 === 0);
+            const rightColumn = topChattersArray.filter((item, idx) => idx % 2 === 1);
+            %>
+            <!-- Left Column -->
+            <div class="col-5">
+                <% leftColumn.forEach(([name, count]) => { %>
+                    <div class="line-content">
+                        <div class="left bigtext shiftright"><%= count %></div>
+                        <div class="right"><%= name %></div>
+                    </div>
+                <% }); %>
+            </div>
+            
+            <!-- Right Column -->
+            <div class="col-5">
+                <% rightColumn.forEach(([name, count]) => { %>
+                    <div class="line-content">
+                        <div class="left bigtext shiftright"><%= count %></div>
+                        <div class="right"><%= name %></div>
+                    </div>
+                <% }); %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="line">
+
     <div class="header">PASSED THE ATTENDANCE CHECK</div>
     <br>
     <div class="centeredgrid">

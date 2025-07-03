@@ -44,3 +44,4 @@ https://id.twitch.tv/oauth2/authorize?client_id=u94z9qatx8h6l5wvoj4gy52qq5uhn8&r
 # 7.) Logged in as your personal user account, visit: http://localhost:4343/oauth?scopes=channel:read:redemptions+moderation:read+channel:read:subscriptions+channel:read:cheers+moderator:read:blocked_terms+moderator:read:chat_settings+moderator:read:unban_requests+moderator:read:banned_users+moderator:read:chat_messages+moderator:read:moderators+moderator:read:vips+channel:moderate+moderator:read:warnings
 
 
+twitch event trigger subscribe -F https://psp.flourek.dev/teswh/event/ -s chujchujchuj  

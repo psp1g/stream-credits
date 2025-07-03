@@ -5,11 +5,11 @@
         <% data.raid.raiders.forEach(raider => { %>
             <div class="line-content ">
                 <div class="left  ">
-                    <% if (raider.viewers < 10) { %>
-                        <%= raider.viewers %> Million Raiders
-                    <% } else { %>
-                        <%= raider.viewers %> Thousand Raiders
-                    <% } %>
+                    <% 
+                        const randomUnits = ['Million', 'Thousand', 'Trillion', 'Billion', 'Hundred'];
+                        const randomUnit = randomUnits[Math.floor(Math.random() * randomUnits.length)];
+                    %>
+                    <%= raider.viewers %> <%= randomUnit %> Raiders
                 </div>
                 <div class="right"><%= raider.username %></div>
             </div>

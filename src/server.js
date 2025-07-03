@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
-const credits = require('./credits'); // Use your credits singleton
+const credits = require('./credits');
+const { Credits } = require('./credits');
 
 const app = express();
 const PORT = 3000;
@@ -12,7 +13,7 @@ app.set('views', path.join(__dirname, 'static'));
 // Add explicit MIME type for video files
 express.static.mime.define({'video/mp4': ['mp4']});
 
-// Serve static files (CSS, JS, images, videos)
+// Serve static files
 app.use(express.static(path.join(__dirname, 'static'), {
     setHeaders: (res, path) => {
         if (path.endsWith('.mp4')) {
@@ -21,16 +22,42 @@ app.use(express.static(path.join(__dirname, 'static'), {
     }
 }));
 
-// API endpoint for raw JSON data
-app.get('/data', (req, res) => {
-    res.json(credits.getAll());
+// Root route - show list of available logs
+app.get('/', (req, res) => {
+    const logs = Credits.getAllLogs();
+    res.render('logs', { logs });
 });
 
-// Serve templated HTML with data at "/"
-app.get('/', (req, res) => {
-    const data = credits.getAll();
-    // const data = credits.getDefaults();
-    res.render('index', { data }); // Pass data to template
+// Credits route - show credits for specific date
+app.get('/credits', (req, res) => {
+    const date = req.query.date;
+    let creditsInstance;
+    
+    if (date) {
+        const logFileName = `${date}.json`;
+        creditsInstance = Credits.createInstance(logFileName);
+    } else {
+        console.log("kurwa: ", Credits.getLatestFilename())
+        creditsInstance = Credits.createInstance(Credits.getLatestFilename()); // Default to today
+    }
+    
+    const data = creditsInstance.getAll();
+    res.render('index', { data, selectedDate: date });
+});
+
+// API endpoint for raw JSON data
+app.get('/data', (req, res) => {
+    const date = req.query.date;
+    let creditsInstance;
+    
+    if (date) {
+        const logFileName = `${date}.json`;
+        creditsInstance = Credits.createInstance(logFileName);
+    } else {
+        creditsInstance = credits;
+    }
+    
+    res.json(creditsInstance.getAll());
 });
 
 app.listen(PORT, () => {

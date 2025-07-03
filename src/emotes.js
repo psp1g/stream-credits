@@ -85,7 +85,7 @@ class EmoteTracker {
                     const bestUrl = emote.urls['4'] || emote.urls['2'] || emote.urls['1'];
                     this.emotes.ffz.set(emote.name, {
                         id: emote.id,
-                        url: `https:${bestUrl}`,
+                        url: bestUrl.startsWith('https:') ? bestUrl : `https:${bestUrl}`, // Fix here
                         service: 'ffz'
                     });
                 });
@@ -99,7 +99,7 @@ class EmoteTracker {
                         const bestUrl = emote.urls['4'] || emote.urls['2'] || emote.urls['1'];
                         this.emotes.ffz.set(emote.name, {
                             id: emote.id,
-                            url: `https:${bestUrl}`,
+                            url: bestUrl.startsWith('https:') ? bestUrl : `https:${bestUrl}`, // Fix here
                             service: 'ffz'
                         });
                     });

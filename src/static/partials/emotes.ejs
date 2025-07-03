@@ -15,7 +15,7 @@
         <% rows.forEach(row => { %>
             <div class="row justify-content-center">
                 <% row.forEach(([emoteName, emoteData]) => { %>
-                    <div class="col-4">
+                    <div class="col-3">
                         <div class="line-content emote-item">
                             <img src="<%= emoteData.url %>" alt="<%= emoteName %>" class="emote-img">
                             <span class="emote-count"> x <%= emoteData.count %></span>

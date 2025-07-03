@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stream Logs</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="img/icon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/icon/favicon-16x16.png">
+    <link rel="manifest" href="img/icon/site.webmanifest">
+
+    <style>
+        body {
+            background: #1a1a1a url('img/spinnu.webp') no-repeat center center fixed;
+            background-size: cover;
+            color: #ccc;
+            font-family: sans-serif;
+            padding: 2rem;
+        }
+
+        /* Overlay for whole page */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(26, 26, 26, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 0;
+        }
+
+        /* Make sure content is above overlay */
+        .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .log-item {
+            background: #2a2a2a;
+            border: 1px solid #444;
+            margin: 0.5rem 0;
+            padding: 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            color: #ccc;
+            display: block;
+            height: 5rem;
+            transition: background 0.3s;
+            border: 2px solid transparent;
+        }
+        .log-item:hover {
+            background: #3a3a3a;
+            color: #fff;
+            text-decoration: none;
+            border: 2px solid yellow;
+        }
+        .log-date {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        .log-size {
+            color: #888;
+            font-size: 0.9rem;
+        }
+        .todaybutton {
+            width: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 5rem;
+            font-size: 1.5rem;
+            background-color: yellow;
+        }
+        .todaybutton:hover {
+            background-color: #cfcf05;
+            color: white;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center mb-4">PSP Stream Credit Logs</h1>
+        
+        <% if (logs.length === 0) { %>
+            <div class="alert alert-info text-center">
+                No stream logs found yet. Logs will appear here after streams.
+            </div>
+        <% } else { %>
+            <div class="d-flex flex-column align-items-center">
+                    
+                    <div class="text-center my-4 ">
+                        <a href="/credits" class="btn todaybutton ">View Latest Credits</a>
+                    </div>
+
+                <% logs.forEach(log => { %>
+                    <div class="log-item mb-3" style="cursor:pointer; width: 400px; max-width: 100%;" onclick="window.location='/credits?date=<%= log.date %>'">
+                        <div class="row">
+                            <div class="col-9">
+                                <div class="log-date"><%= log.displayName %></div>
+                                <div class="log-size">
+                                    Size: <%= Math.round(log.size / 1024) %>KB | 
+                                    Modified: <%= new Date(log.modified).toLocaleDateString() %>
+                                </div>
+                            </div>
+                            <div class="col-3 d-flex align-items-center justify-content-end">
+                                <a href="/data?date=<%= log.date %>" target="_blank" class="btn btn-sm btn-outline-info" onclick="event.stopPropagation();">
+                                    JSON
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                <% }); %>
+            </div>
+        <% } %>
+        
+ 
+    </div>
+</body>
+</html>
