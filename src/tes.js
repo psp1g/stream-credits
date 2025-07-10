@@ -7,11 +7,11 @@ const subscriptionConfig = {
     "channel.update": {
         version: "2"
     },
-    "channel.chat.message": {
+    "channel.chat.message": { // user:read:chat
         conditions: { user_id: "415401864" }
     },
-    "channel.subscribe": {},
-    "channel.ban": {},
+    "channel.subscribe": {},    // channel:read:subscriptions
+    "channel.ban": {},              // channel:moderate
     "stream.online": {},
     "stream.offline": {},
     "channel.shared_chat.begin": {}

@@ -57,7 +57,8 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
 /* CRT */
 
   html { 
-        text-shadow: 0.03rem 0 0.03rem #ea36afcc, -0.06rem 0 0.01rem #75fa69cc, 0 2px 6px #000a;
+        /* text-shadow: 0.03rem 0 0.03rem #ea36afcc, -0.06rem 0 0.01rem #75fa69cc; */
+        text-shadow: 0.03rem 0 0.03rem #ea36afcc, -0.06rem 0 0.01rem #75fa69cc, 0 2px 4px rgba(0, 0, 0, 0.452);
         letter-spacing: 0.06em;
         animation-duration: 0.001s;
         /* animation-name: textflicker; */
@@ -80,8 +81,8 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
 *{
   font-family: 'CustomFont', sans-serif;
   letter-spacing: 0.2rem;
-  color: rgb(255, 255, 255);
-  /* color: rgb(255, 145, 0); */
+  /* color: rgb(255, 255, 255); */
+  color: #f87600
 }
 
 
@@ -294,8 +295,9 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
 .chatters .left, .chatters .right {
   width: 40%;
 }
+
 .chatters{
-  transform: translateX(50px);
+  transform: translateX(10px);
 }
 
 
@@ -449,17 +451,18 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
 
       
 .logos {
-      width: 100vw;
-      height: 50vw;
-      transform: translateX(-3rem);
-      /* filter: contrast(0.7); */
-      /* filter: contrast(0.7)  
-          drop-shadow(0.0015rem 0 0.0015rem #ea36afcc) 
-          drop-shadow(-0.003rem 0 0.0005rem #75fa69cc); */
+  width: 100vw;
+  height: 50vw;
+  transform: translateX(-3rem);
+  /* filter: contrast(0.7); */
+  /* filter: contrast(0.7)  
+      drop-shadow(0.0015rem 0 0.0015rem #ea36afcc) 
+      drop-shadow(-0.003rem 0 0.0005rem #75fa69cc); */
   animation-duration: 0.001s;
   /* animation-name: logoflicker; */
   animation-iteration-count: infinite;
   animation-direction: alternate;
+    filter: brightness(0) saturate(100%) invert(54%) sepia(98%) saturate(7492%) hue-rotate(-320deg) brightness(151%) contrast(104%);
 }
 
 .discordlogo {

@@ -67,7 +67,7 @@ tes.on("channel.ban", (event) => {
     // Blicky
     if (event.reason && event.reason.toLowerCase().includes("emote detected")) {
         
-        const lowerReason = reason.toLowerCase();
+        const lowerReason = event.reason.toLowerCase();
         
         if (lowerReason.includes("xqc")) {
             currentStreamCredits.increment("blicky.xqc");

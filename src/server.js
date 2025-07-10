@@ -3,8 +3,10 @@ const path = require('path');
 const credits = require('./credits');
 const { Credits } = require('./credits');
 
+require('dotenv').config();
+
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT;
 
 // Set EJS as template engine
 app.set('view engine', 'ejs');

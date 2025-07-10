@@ -65,14 +65,23 @@ function addByPath(obj, path, value) {
 class Credits {
     constructor(logFileName = null) {
         this.defaults = JSON.parse(fs.readFileSync(DEFAULTS_FILE, 'utf8'));
-        this.logFileName = logFileName || this.getTodayLogName();
+        this.logFileName = logFileName || this.getLogName();
         this.dataFile = path.join(LOGS_DIR, this.logFileName);
         this.data = this.load();
     }
 
-    getTodayLogName() {
+    getLogName() {
+        // Check if in development mode
+        if (process.env.DEVELOPMENT === 'true') {
+            return 'test.json';
+        }
+        // Production mode - use date-based naming
         const today = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
         return `${today}.json`;
+    }
+
+    getTodayLogName() {
+        return this.getLogName(); // Use the same logic
     }
 
     getLogPath() {
@@ -234,6 +243,11 @@ class Credits {
     }
 
     postProcess() { 
+        // Get excluded users from environment
+        const excludedUsers = process.env.EXCLUDED_USERS ? 
+            process.env.EXCLUDED_USERS.split(',').map(user => user.trim().toLowerCase()) : 
+            [];
+
         // --- TOP CHATTERS ---
         const chatters = this.get('messages.chatters') || {};
         const chattersArr = Object.entries(chatters).map(([name, count]) => ({ name, count }));
@@ -259,8 +273,13 @@ class Credits {
             moderatorsArray = Object.keys(moderators);
         }
         
+        // Filter out excluded users
+        const filteredModerators = moderatorsArray.filter(mod => 
+            !excludedUsers.includes(mod.toLowerCase())
+        );
+        
         // Sort moderators by message count (if available) or keep original order
-        const sortedModerators = moderatorsArray.sort((a, b) => {
+        const sortedModerators = filteredModerators.sort((a, b) => {
             const aCount = this.get(`messages.chatters.${a}`) || 0;
             const bCount = this.get(`messages.chatters.${b}`) || 0;
             return bCount - aCount; // Sort by message count descending
@@ -290,9 +309,7 @@ class Credits {
         }
         
         setByPath(this.data, 'emotes.top', topEmotesObj);
-        this.save();
     }
-
 
     addEmoteUsage(emoteName, emoteUrl = null) {
         const emotePath = `emotes.usage.${emoteName}`;

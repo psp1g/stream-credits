@@ -1,5 +1,5 @@
 
-https://id.twitch.tv/oauth2/authorize?client_id=u94z9qatx8h6l5wvoj4gy52qq5uhn8&redirect_uri=https://psp.flourek.dev/&response_type=code&scope=channel:read:redemptions+moderation:read+channel:read:subscriptions+channel:read:cheers+moderator:read:blocked_terms+moderator:read:chat_settings+moderator:read:unban_requests+moderator:read:banned_users+moderator:read:chat_messages+moderator:read:moderators+moderator:read:vips+channel:moderate+moderator:read:warnings
+https://id.twitch.tv/oauth2/authorize?client_id=u94z9qatx8h6l5wvoj4gy52qq5uhn8&redirect_uri=https://psp.flourek.dev/&response_type=code&scope=channel:read:redemptions+moderation:read+channel:read:subscriptions+channel:read:cheers+moderator:read:blocked_terms+moderator:read:chat_settings+moderator:read:unban_requests+moderator:read:banned_users+moderator:read:chat_messages+moderator:read:moderators+moderator:read:vips+channel:moderate+moderator:read:warnings&force_verify=true
 
 
 
@@ -39,9 +39,23 @@ twitch event trigger subscribe -F https://flourek.dev/streamcredits/eventsub
 https://id.twitch.tv/oauth2/authorize?client_id=u94z9qatx8h6l5wvoj4gy52qq5uhn8&redirect_uri=https://psp.flourek.dev/&response_type=code&scope=moderator:read:unban_requests+user:read:chat+user:bot+channel:bot&force_verify=true
 
 
-# 6.) Logged in the bots user account, visit: http://localhost:4343/oauth?scopes=moderation:read+channel:read:subscriptions+channel:read:cheers+moderator:read:blocked_terms+moderator:read:chat_settings+moderator:read:unban_requests+moderator:read:banned_users+moderator:read:chat_messages+moderator:read:moderators+moderator:read:vips+channel:moderate+moderator:read:warnings
 
-# 7.) Logged in as your personal user account, visit: http://localhost:4343/oauth?scopes=channel:read:redemptions+moderation:read+channel:read:subscriptions+channel:read:cheers+moderator:read:blocked_terms+moderator:read:chat_settings+moderator:read:unban_requests+moderator:read:banned_users+moderator:read:chat_messages+moderator:read:moderators+moderator:read:vips+channel:moderate+moderator:read:warnings
+
+https://id.twitch.tv/oauth2/authorize?client_id=u94z9qatx8h6l5wvoj4gy52qq5uhn8&redirect_uri=https://psp.flourek.dev/&response_type=code&scope=channel:moderate+user:read:chat+channel:read:subscriptions+channel:read:guest_star+channel:read:redemptions+channel:read:polls+channel:read:predictions+channel:read:vips+channel:read:hype_train+moderator:read:shoutouts
+
+channel:moderate
+user:read:chat
+channel:read:subscriptions
+channel:read:guest_star
+channel:read:redemptions
+channel:read:polls
+channel:read:predictions
+channel:read:vips
+channel:read:hype_train
+moderator:read:shoutouts
 
 
 twitch event trigger subscribe -F https://psp.flourek.dev/teswh/event/ -s chujchujchuj  
+
+
+

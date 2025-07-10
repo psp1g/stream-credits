@@ -1,55 +1,56 @@
 
-        <div class="line">
-            <div class="header">MESSAGES</div>
-            <div class="line-content">
-                <div class="left">Total Messages</div>
-                <div class="right"><%= data.messages.total %></div>
-            </div>
-            <div class="line-content">
-                <div class="left">Unique Chatters</div>
-                <div class="right"><%= data.messages.chatterCount %></div>
-            </div>
-            <div class="line-content">
-                <div class="left">First Time Chatters</div>
-                <div class="right"><%= data.messages.firstTimeMessages %></div>
-            </div>
-            <div class="line-content">
-                <div class="left">First Time Testers</div>
-                <div class="right"><%= data.messages.firstTimeTesters %></div>
-            </div>
-        </div>
-
-        <div class="line">
-            <div class="header">TOP CHATTERS</div>
-            <br>
-            <div class="container-fluid chatters">
-                <div class="row">
-                    <!-- Left Column -->
-                    <div class="col-5">
-                        <% 
-                        const topChattersArray = Object.entries(data.messages.topChatters);
-                        const leftColumn = topChattersArray.filter((item, idx) => idx % 2 === 0);
-                        %>
-                        <% leftColumn.forEach(([name, count]) => { %>
-                            <div class="line-content">
-                                <div class="left bigtext shiftright"><%= count %></div>
-                                <div class="right"><%= name %></div>
-                            </div>
-                        <% }); %>
-                    </div>
-                    
-                    <!-- Right Column -->
-                    <div class="col-5">
-                        <% 
-                        const rightColumn = topChattersArray.filter((item, idx) => idx % 2 === 1);
-                        %>
-                        <% rightColumn.forEach(([name, count]) => { %>
-                            <div class="line-content">
-                                <div class="left bigtext shiftright"><%= count %></div>
-                                <div class="right"><%= name %></div>
-                            </div>
-                        <% }); %>
-                    </div>
+<div class="line">
+<div class="header">TOP CHATTERS</div>
+<br>
+<div class="container-fluid chatters">
+    <div class="row">
+        <!-- Left Column -->
+        <div class="col-5">
+            <% 
+            const topChattersArray = Object.entries(data.messages.topChatters);
+            const leftColumn = topChattersArray.filter((item, idx) => idx % 2 === 0);
+            %>
+            <% leftColumn.forEach(([name, count]) => { %>
+                <div class="line-content">
+                    <div class="left bigtext shiftright"><%= count %></div>
+                    <div class="right"><%= name %></div>
                 </div>
-            </div>
+            <% }); %>
         </div>
+        
+        <!-- Right Column -->
+        <div class="col-5">
+            <% 
+            const rightColumn = topChattersArray.filter((item, idx) => idx % 2 === 1);
+            %>
+            <% rightColumn.forEach(([name, count]) => { %>
+                <div class="line-content">
+                    <div class="left bigtext shiftright"><%= count %></div>
+                    <div class="right"><%= name %></div>
+                </div>
+            <% }); %>
+        </div>
+    </div>
+</div>
+</div>
+
+
+<div class="line">
+<div class="header">MESSAGES</div>
+<div class="line-content">
+    <div class="left">Total Messages</div>
+    <div class="right"><%= data.messages.total %></div>
+</div>
+<div class="line-content">
+    <div class="left">Unique Chatters</div>
+    <div class="right"><%= data.messages.chatterCount %></div>
+</div>
+<div class="line-content">
+    <div class="left">First Time Chatters</div>
+    <div class="right"><%= data.messages.firstTimeMessages %></div>
+</div>
+<div class="line-content">
+    <div class="left">First Time Testers</div>
+    <div class="right"><%= data.messages.firstTimeTesters %></div>
+</div>
+</div>

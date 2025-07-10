@@ -3,8 +3,8 @@
     <% 
         const moderators = (data.stream.moderatorsSorted || data.stream.moderators || []);
         if (moderators.length > 0) {
-            const topMods = moderators.slice(0, 3);
-            const cosmeticMods = moderators.slice(3);
+            const topMods = moderators.slice(0, 5);
+            const cosmeticMods = moderators.slice(5);
     %>
         <% if (topMods.length > 0) { %>
         <div class="line-content">
