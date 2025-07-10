@@ -75,14 +75,14 @@ async function unsubscribeFromAll() {
         
         await Promise.allSettled(promises);
         console.log('🧹 Cleanup complete');
+        subscribeToEvents();
+
     } catch (err) {
         console.error('❌ Failed to get subscriptions for cleanup:', err);
     }
 }
 
-
-subscribeToEvents();
-setTimeout(logSubscriptions, 5000);
+setTimeout(logSubscriptions, 10000);
 
 
 module.exports = tes;
