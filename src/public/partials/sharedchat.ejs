@@ -1,0 +1,11 @@
+<div class="line sponsor">
+    <div class="header">SPECIAL GUESTS</div>
+    
+    <% if (data.stream && data.stream.specialGuests && data.stream.specialGuests.length > 0) { %>
+        <% data.stream.specialGuests.forEach((title, index) => { %>
+            <div class="shiftleft bigtext upperCase w-50 veryCloseLineHeight mb-4"><%= title %></div>
+        <% }); %>
+    <% } %>
+    
+
+</div>

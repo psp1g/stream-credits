@@ -10,12 +10,12 @@
     
     <div class="row">
         <div class="col-6">
-            <% if (data.support.subscribers && data.support.subscribers.length > 0) { %>
+            <% if (data.support && data.support.subs && data.support.subs.users && data.support.subs.users.length > 0) { %>
                 <div class="header m-0 mb-4">
                     Subscribers
                 </div>
                 <div class="densegrid">
-                    <% data.support.subscribers.forEach(username => { %>
+                    <% data.support.subs.users.forEach(username => { %>
                         <div class="densegrid-item">
                             <%= username %>
                         </div>

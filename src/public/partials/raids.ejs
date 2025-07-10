@@ -1,7 +1,7 @@
+<% if (data.raid.raiders && data.raid.raiders.length > 0) { %>
 <div class="line">
     
     <div class="header">RAIDS</div>
-    <% if (data.raid.raiders && data.raid.raiders.length > 0) { %>
         <% data.raid.raiders.forEach(raider => { %>
             <div class="line-content ">
                 <div class="left  ">
@@ -14,8 +14,8 @@
                 <div class="right"><%= raider.username %></div>
             </div>
         <% }); %>
-    <% } %>
-     <div class="line-content bigtext shiftleft">
-        <%= data.raid.totalViewers %> Total Raiders 
+        <div class="line-content bigtext shiftleft">
+            <%= data.raid.totalViewers %> Total Raiders 
+        </div>
     </div>
-</div>
+<% } %>

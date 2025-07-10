@@ -312,6 +312,7 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
     font-size: 6rem;
     height: 4rem;
     transform: translateY(-1rem) translateX(-1.5rem);
+    margin-bottom: 100px;
 }
 
 .empty-role{
@@ -475,3 +476,16 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
   line-height: 4rem;
 }
 
+.veryCloseLineHeight {
+  line-height: 2rem;
+}
+
+
+#enjoyedstay{
+  margin-top: 40%;
+  margin-bottom: 25%;
+}
+
+.upperCase {
+  text-transform: uppercase;
+}

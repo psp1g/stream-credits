@@ -1,7 +1,8 @@
 const fs = require('fs');
 const path = require('path');
+const { postProcess } = require('./postprocess');
 
-const LOGS_DIR = path.join(__dirname, 'logs');
+const LOGS_DIR = path.join(__dirname, '..', '..', 'logs');
 const DEFAULTS_FILE = path.join(__dirname, 'default.json');
 
 // Ensure logs directory exists
@@ -165,14 +166,15 @@ class Credits {
     }
 
     getAll() {
-        this.postProcess(); // Fix: call this.postProcess()
+        postProcess(this.data, this.get.bind(this));
+        this.save();
         return this.data;
     }
 
     getDefaults() {
         // Always read fresh from file for live debugging
         this.data = JSON.parse(fs.readFileSync(DEFAULTS_FILE, 'utf8'));
-        this.postProcess(); // Fix: call this.postProcess()
+        postProcess(this.data, this.get.bind(this));
         return this.data;
     }
 
@@ -182,133 +184,6 @@ class Credits {
         if (!logs.length) return null;
         // logs are already sorted descending by date in getAllLogs
         return logs[0].filename;
-    }
-
-    calculateAttendanceStreaks() {
-        const logs = Credits.getAllLogs();
-        const userAttendance = {}; // { username: [dates] }
-        
-        // Collect all present users from all logs
-        logs.forEach(log => {
-            try {
-                const logData = JSON.parse(fs.readFileSync(path.join(LOGS_DIR, log.filename), 'utf8'));
-                const presentUsers = logData.present || [];
-                const date = log.date;
-                
-                presentUsers.forEach(username => {
-                    if (!userAttendance[username]) {
-                        userAttendance[username] = [];
-                    }
-                    userAttendance[username].push(date);
-                });
-            } catch (e) {
-                console.error(`Error reading ${log.filename}:`, e);
-            }
-        });
-        
-        // Calculate max streak for each user
-        const userMaxStreaks = {};
-        
-        Object.entries(userAttendance).forEach(([username, dates]) => {
-            // Sort dates chronologically
-            dates.sort((a, b) => new Date(a) - new Date(b));
-            
-            let maxStreak = 1;
-            let currentStreak = 1;
-            
-            for (let i = 1; i < dates.length; i++) {
-                const prevDate = new Date(dates[i - 1]);
-                const currentDate = new Date(dates[i]);
-                const dayDiff = (currentDate - prevDate) / (1000 * 60 * 60 * 24);
-                
-                if (dayDiff === 1) {
-                    currentStreak++;
-                    maxStreak = Math.max(maxStreak, currentStreak);
-                } else {
-                    currentStreak = 1;
-                }
-            }
-            
-            if (maxStreak >= 2) {
-                userMaxStreaks[username] = maxStreak;
-            }
-        });
-        
-        // Sort by streak length
-        const sortedUsers = Object.entries(userMaxStreaks)
-            .sort((a, b) => b[1] - a[1]);
-        
-        // Save to presentStreak
-        setByPath(this.data, 'presentStreak', Object.fromEntries(sortedUsers));
-    }
-
-    postProcess() { 
-        // Get excluded users from environment
-        const excludedUsers = process.env.EXCLUDED_USERS ? 
-            process.env.EXCLUDED_USERS.split(',').map(user => user.trim().toLowerCase()) : 
-            [];
-
-        // --- TOP CHATTERS ---
-        const chatters = this.get('messages.chatters') || {};
-        const chattersArr = Object.entries(chatters).map(([name, count]) => ({ name, count }));
-        const topChattersArr = chattersArr.sort((a, b) => b.count - a.count).slice(0, 20);
-
-        // Convert back to object { username: count, ... }
-        const topChattersObj = {};
-        for (const { name, count } of topChattersArr) {
-            topChattersObj[name] = count;
-        }
-
-        setByPath(this.data, 'messages.topChatters', topChattersObj);
-
-        // --- TOP MODERATORS ---
-        const moderators = this.get('stream.moderators') || [];
-        
-        // Check if moderators is an array, if not convert it
-        let moderatorsArray;
-        if (Array.isArray(moderators)) {
-            moderatorsArray = moderators;
-        } else {
-            // If it's an object, get the keys (usernames)
-            moderatorsArray = Object.keys(moderators);
-        }
-        
-        // Filter out excluded users
-        const filteredModerators = moderatorsArray.filter(mod => 
-            !excludedUsers.includes(mod.toLowerCase())
-        );
-        
-        // Sort moderators by message count (if available) or keep original order
-        const sortedModerators = filteredModerators.sort((a, b) => {
-            const aCount = this.get(`messages.chatters.${a}`) || 0;
-            const bCount = this.get(`messages.chatters.${b}`) || 0;
-            return bCount - aCount; // Sort by message count descending
-        });
-
-        setByPath(this.data, 'stream.moderatorsSorted', sortedModerators);
-
-        // --- ATTENDANCE STREAKS ---
-        this.calculateAttendanceStreaks();
-
-        // --- TOP EMOTES ---
-        const emoteUsage = this.get('emotes.usage') || {};
-        const emotesArr = Object.entries(emoteUsage).map(([emoteId, data]) => ({ 
-            id: emoteId, 
-            url: data.url, 
-            count: data.count 
-        }));
-        const topEmotesArr = emotesArr.sort((a, b) => b.count - a.count).slice(0, 18);
-
-        // Convert to object for template { emoteId: { url, count }, ... }
-        const topEmotesObj = {};
-        for (const emote of topEmotesArr) {
-            topEmotesObj[emote.id] = {
-                url: emote.url,
-                count: emote.count
-            };
-        }
-        
-        setByPath(this.data, 'emotes.top', topEmotesObj);
     }
 
     addEmoteUsage(emoteName, emoteUrl = null) {

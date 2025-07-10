@@ -1,18 +1,3 @@
-<% if ((data.creditedInHalfLifeSpeedrun || []).length > 0 && (data.stream.categoryHistory || []).includes("Half-Life")) { %>
-<div class="line">
-    <div class="header">CREDITED IN HALF-LIFE SPEEDRUN</div>
-    <br>
-    <div class="centeredgrid">
-        <% (data.creditedInHalfLifeSpeedrun || []).forEach(username => { %>
-            <div class="centeredgrid-item">
-                <div class="right"><%= username %></div>
-            </div>
-        <% }); %>
-    </div>
-</div>
-<% } %>
-
-
 <div class="line">
     <div class="header">LONGEST PRESENT STREAK</div>
     <br>
@@ -21,7 +6,7 @@
             <% 
             const topChattersArray = Object.entries(data.presentStreak)
                 .sort((a, b) => b[1] - a[1])
-                .slice(0, 10);
+                .slice(0, 20);
             const leftColumn = topChattersArray.filter((item, idx) => idx % 2 === 0);
             const rightColumn = topChattersArray.filter((item, idx) => idx % 2 === 1);
             %>
@@ -45,18 +30,5 @@
                 <% }); %>
             </div>
         </div>
-    </div>
-</div>
-
-<div class="line">
-
-    <div class="header">PASSED THE ATTENDANCE CHECK</div>
-    <br>
-    <div class="centeredgrid">
-        <% (data.present || []).forEach(username => { %>
-            <div class="centeredgrid-item">
-                <div class="right"><%= username %></div>
-            </div>
-        <% }); %>
     </div>
 </div>

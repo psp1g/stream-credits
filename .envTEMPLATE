@@ -1,0 +1,11 @@
+TWITCH_CLIENT_ID=
+TWITCH_CLIENT_SECRET=
+WEBHOOKS_SECRET=
+# TWITCH_CHANNEL_NAME=psp1g
+# TWITCH_CHANNEL_ID=104391402
+PORT=3000
+TWITCH_CHANNEL_NAME=flovrek
+TWITCH_CHANNEL_ID=415401864
+
+# Excluded users (comma-separated list)
+EXCLUDED_USERS=Supibot,Nightbot,StreamElements,Streamlabs,Moobot,Fossabot,gofishgame,PotatBotat,Poland_BOT,ftk789_bot

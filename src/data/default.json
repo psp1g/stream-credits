@@ -20,29 +20,26 @@
     { "name": "renyan", "role": "Plus Forward Guy" },
     { "name": "DONA", "role": "Gang Leader" },
     { "name": "ZOIL", "role": "Look Up" },
-    { "name": "wuh6", "role": "Wuh" },
     { "name": "Spaceashes", "role": "HIM" },
     { "name": "Crowbcat", "role": "Alt Account" },
     { "name": "FOXYCS", "role": "Local Femboy" },
     { "name": "SL3ID3R", "role": "Runboost Stunt Assistant" },
+    { "name": "Summit1g", "role": "Self Immolation Stuntman " },
     { "name": "whaliin", "role": "MrSwagBoss" },
+    { "name": "wuh6", "role": "Wuh" },
     { "name": "Ketamine1g", "role": "The Dead Twin " },
+    { "name": "OTAG", "role": "Scientist, Soldier, Wizard" },
+    { "name": "ZYZZ", "role": "Mentor" },
+    { "name": "forsen", "role": "Teacher" },
     { "name": "", "role": "" },
     { "name": "bLitz",  "role": "The Mongolz IGL" },
     { "name": "Techno", "role": "The Mongolz Rifler" },
     { "name": "Senzu",  "role": "The Mongolz Rifler" },
     { "name": "mzinho", "role": "The Mongolz Rifler" },
-    { "name": "910",    "role": "The Mongolz AWPer" },
-    { "name": "", "role": "" },
-    { "name": "OTAG", "role": "Scientist, Soldier, Wizard" },
-    { "name": "Summit1g", "role": "Self Immolation Stuntman " },
-    { "name": "ZYZZ", "role": "Mentor" },
-    { "name": "forsen", "role": "Teacher" }
+    { "name": "910",    "role": "The Mongolz AWPer" }
   ],
   "artists": [
      { "name": "bluberry",    "role": "Sub Badges" },
-     { "name": "?",    "role": "Emotes" },
-     { "name": "?",    "role": "Intro" },
      { "name": "Flourek",    "role": "Ending Credits" }
   ],
   "programmers": [
@@ -80,7 +77,10 @@
     "resubCount": 0,
     "newsubCount": 0,
     "gifters": [],
-    "subscribers": [],
+    "subs": {
+      "resub": 20,
+      "users": []
+    },
     "cheers": {
       "total": 0,
       "users": []

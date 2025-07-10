@@ -1,6 +1,6 @@
-const tes = require("./tes");
-const credits = require('./credits');
-const { Credits } = require('./credits');
+const tes = require("../listeners/tes");
+const credits = require('../data/credits');
+const { Credits } = require('../data/credits');
 
 require('dotenv').config(); 
 
@@ -36,12 +36,13 @@ tes.on("channel.update", (event) => {
 
 tes.on("channel.shared_chat.begin", (event) => {
     console.log(`🤝 Shared chat began with ${event.participants.length} participants`);
-    
-    // Loop through all participants and add their broadcaster names as special guests
+    const mainChannel = process.env.TWITCH_CHANNEL_NAME.toLowerCase();
     event.participants.forEach(participant => {
         const guestName = participant.broadcaster_user_name;
-        if (currentStreamCredits.appendUnique('stream.specialGuests', guestName)) {
-            console.log(`[special guest] Added ${guestName} to special guests list`);
+        if (guestName.toLowerCase() !== mainChannel) {
+            if (currentStreamCredits.appendUnique('stream.specialGuests', guestName)) {
+                console.log(`[special guest] Added ${guestName} to special guests list`);
+            }
         }
     });
 });

@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
-const credits = require('./credits');
-const { Credits } = require('./credits');
+const credits = require('./data/credits');
+const { Credits } = require('./data/credits');
 
 require('dotenv').config();
 
@@ -10,13 +10,12 @@ const PORT = process.env.PORT;
 
 // Set EJS as template engine
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'static'));
+app.set('views', path.join(__dirname, 'public'));
 
-// Add explicit MIME type for video files
 express.static.mime.define({'video/mp4': ['mp4']});
 
 // Serve static files
-app.use(express.static(path.join(__dirname, 'static'), {
+app.use(express.static(path.join(__dirname, 'public'), {
     setHeaders: (res, path) => {
         if (path.endsWith('.mp4')) {
             res.setHeader('Content-Type', 'video/mp4');

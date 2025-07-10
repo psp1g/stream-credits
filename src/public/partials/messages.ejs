@@ -1,4 +1,27 @@
 
+
+<div class="line">
+<div class="header">MESSAGES</div>
+<div class="line-content">
+    <div class="left">Total Messages</div>
+    <div class="right"><%= data.messages.total %></div>
+</div>
+<div class="line-content">
+    <div class="left">Unique Chatters</div>
+    <div class="right"><%= data.messages.chatterCount %></div>
+</div>
+<div class="line-content">
+    <div class="left">First Time Chatters</div>
+    <div class="right"><%= data.messages.firstTimeMessages %></div>
+</div>
+<div class="line-content">
+    <div class="left">First Time Testers</div>
+    <div class="right"><%= data.messages.firstTimeTesters %></div>
+</div>
+</div>
+
+
+
 <div class="line">
 <div class="header">TOP CHATTERS</div>
 <br>
@@ -31,26 +54,5 @@
             <% }); %>
         </div>
     </div>
-</div>
-</div>
-
-
-<div class="line">
-<div class="header">MESSAGES</div>
-<div class="line-content">
-    <div class="left">Total Messages</div>
-    <div class="right"><%= data.messages.total %></div>
-</div>
-<div class="line-content">
-    <div class="left">Unique Chatters</div>
-    <div class="right"><%= data.messages.chatterCount %></div>
-</div>
-<div class="line-content">
-    <div class="left">First Time Chatters</div>
-    <div class="right"><%= data.messages.firstTimeMessages %></div>
-</div>
-<div class="line-content">
-    <div class="left">First Time Testers</div>
-    <div class="right"><%= data.messages.firstTimeTesters %></div>
 </div>
 </div>

@@ -1,7 +1,7 @@
 const TES = require("tesjs");
 require('dotenv').config(); 
 
-const app = require('./server'); 
+const app = require('../server'); 
 
 const subscriptionConfig = {
     "channel.update": {

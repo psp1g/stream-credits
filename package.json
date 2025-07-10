@@ -4,7 +4,7 @@
   "description": "A simple Twitch chat logger that logs messages to a JSON file.",
   "main": "src/tmitest.js",
   "scripts": {
-    "start": "node src/index.js",
+    "start": "node src/main.js",
     "eventsub": "node src/eventsub.js",
     "twurple": "node src/twurple.js",
     "tes": "node src/tes.js"
