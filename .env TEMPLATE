@@ -1,0 +1,7 @@
+TWITCH_CLIENT_ID=<your client id here>
+TWITCH_CLIENT_SECRET=<your client secret here>
+WEBHOOKS_SECRET=<randomly generated string>
+PORT=3000
+TWITCH_CHANNEL_NAME=<your channel name here>
+TWITCH_CHANNEL_ID=<your channel id here>
+EXCLUDED_USERS=Nightbot,StreamElements,...

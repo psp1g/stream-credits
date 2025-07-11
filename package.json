@@ -1,21 +1,13 @@
 {
-  "name": "twitch-logger",
+  "name": "stream-credits",
   "version": "1.0.0",
-  "description": "A simple Twitch chat logger that logs messages to a JSON file.",
-  "main": "src/tmitest.js",
+  "description": "A comprehensive Twitch stream analytics and credits system for PSP1G's streams.",
+  "main": "src/main.js",
   "scripts": {
     "start": "node src/main.js",
-    "eventsub": "node src/eventsub.js",
-    "twurple": "node src/twurple.js",
     "tes": "node src/tes.js"
   },
   "dependencies": {
-    "@twurple/api": "^7.3.0",
-    "@twurple/auth": "^7.3.0",
-    "@twurple/easy-bot": "^7.3.0",
-    "@twurple/eventsub": "^5.3.4",
-    "@twurple/eventsub-http": "^7.3.0",
-    "@twurple/eventsub-ngrok": "^7.3.0",
     "axios": "^1.10.0",
     "dotenv": "^16.5.0",
     "ejs": "^3.1.10",
