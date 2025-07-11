@@ -149,5 +149,4 @@ stream-credits/
 This project is licensed under the MIT License.
 
 ## Credits
-
-Developed for psp1g's Twitch streaming setup to provide comprehensive stream analytics and automated credits generation.
+Originally developed [Flourek](https://github.com/flourek/).
