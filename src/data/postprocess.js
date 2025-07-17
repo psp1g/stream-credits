@@ -33,7 +33,7 @@ function getExcludedUsers() {
 function processTopChatters(data, getter) {
     const chatters = getter('messages.chatters') || {};
     const chattersArr = Object.entries(chatters).map(([name, count]) => ({ name, count }));
-    const topChattersArr = chattersArr.sort((a, b) => b.count - a.count).slice(0, 20);
+    const topChattersArr = chattersArr.sort((a, b) => b.count - a.count).slice(0, 24);
 
     // Convert back to object { username: count, ... }
     const topChattersObj = {};

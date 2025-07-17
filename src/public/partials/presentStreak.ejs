@@ -1,10 +1,11 @@
+<% if (data.watchStreak && Object.keys(data.watchStreak).length > 0) { %>
 <div class="line">
-    <div class="header">LONGEST PRESENT STREAK</div>
+    <div class="header">LONGEST WATCH STREAKS</div>
     <br>
     <div class="container-fluid chatters">
         <div class="row">
             <% 
-            const topChattersArray = Object.entries(data.presentStreak)
+            const topChattersArray = Object.entries(data.watchStreak)
                 .sort((a, b) => b[1] - a[1])
                 .slice(0, 20);
             const leftColumn = topChattersArray.filter((item, idx) => idx % 2 === 0);
@@ -31,4 +32,7 @@
             </div>
         </div>
     </div>
+    <div class="header">(Only Ones Redeemed Today Are Shown)</div>
 </div>
+
+<% } %>

@@ -68,6 +68,7 @@
     ]
   },
   "presentStreak": [],
+  "watchStreak": [],
   "present": [],
   "creditedInHalfLifeSpeedrun": [],
 
@@ -79,7 +80,8 @@
     "gifters": [],
     "subs": {
       "resub": 20,
-      "users": []
+      "users": [],
+      "gifters": []
     },
     "cheers": {
       "total": 0,

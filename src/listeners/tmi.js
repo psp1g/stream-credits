@@ -6,11 +6,7 @@ const client = new tmi.Client({
     options: { debug: true },
     connection: {
         reconnect: true,
-        secure: true,
-        maxReconnectAttempts: null, // Infinite reconnect attempts
-        maxReconnectInterval: 30000, // Max 30 seconds between reconnects
-        reconnectDecay: 1.5, // Exponential backoff multiplier
-        reconnectInterval: 1000 // Start with 1 second delay
+        secure: false,
     },
     channels: [ process.env.TWITCH_CHANNEL_NAME ]
 });
@@ -59,10 +55,6 @@ client.on('error', (error) => {
     // TMI will handle reconnection automatically due to reconnect: true
 });
 
-// Raw message handling (optional, for debugging)
-client.on('raw_message', (messageCloned, message) => {
-    // console.log(`[raw_message] IRC data received: ${message.raw}`);
-});
 
 // Join events (optional, for debugging)
 // client.on('join', (channel, username, self) => {

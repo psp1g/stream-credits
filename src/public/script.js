@@ -6,15 +6,15 @@ let animationStopped = false;
 let logoTimeoutId, scrollTimeoutId;
 
 function scrollAnimation() {
-    const height = $('#scrolling').height();
-    const pixelsPerSecond = 100; // Adjust this value to control speed
+    const height = $('#scrolling').height() - 1400 ;
+    const pixelsPerSecond = 10000; // Adjust this value to control speed
     const time = (height + 300) / pixelsPerSecond * 1000; // Convert to milliseconds
 
     console.log("Starting animation, height:", height, "time:", time);
 
     logoTimeoutId = setTimeout(() => {
         if (animationStopped) return;
-        console.log("Logo animation starting");
+       console.log("Logo animation starting");
         $('#psplogo').css({ display: 'block' });
     }, 2000);
 
@@ -46,7 +46,18 @@ function scrollAnimation() {
                 });
         }, 2000);
 
-    }, 5000);
+        // Fade out background after 2m 23s
+        setTimeout(() => {
+            if (animationStopped) return;
+            $('#background')
+                .animate({ 'opacity': '0' }, { 
+                    duration: 1000, 
+                    queue: false, 
+                    easing: "linear" 
+                });
+        }, 143000); // 2 minutes 23 seconds
+
+    }, 100);
 }
 
 // Stop scrolling animation on actual user scroll

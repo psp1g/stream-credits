@@ -70,6 +70,37 @@ function setupTMIEvents(client) {
         // ---- EMOTE TRACKING (now handled by emoteTracker) ----
         emoteTracker.trackEmotes(message, tags.emotes, credits);
     });
+    
+
+    // watch streaks
+    client.on('raw_message', (messageCloned, message) => {
+        // Check for watch streak messages in the raw IRC string
+        if (message.raw && message.raw.includes('msg-param-category=watch-streak')) {
+            const rawString = message.raw;
+            
+            // Extract display-name
+            const username = tags['display-name']
+            
+            // Extract msg-param-value
+            const valueMatch = rawString.match(/msg-param-value=(\d+)/);
+            const streakValue = valueMatch ? parseInt(valueMatch[1]) : null;
+            
+            if (username && streakValue) {
+                const watchStreakPath = `watchStreaks.${username}`;
+                if (credits.get(watchStreakPath) === undefined) {
+                    credits.set(watchStreakPath, streakValue);
+                } else {
+                    credits.set(watchStreakPath, streakValue);
+                }
+                console.log(`[watch-streak] ${username} achieved ${streakValue} consecutive streams`);
+            }
+        }
+
+        // Serialize the raw IRC message object for logging
+        // console.log(`[raw_message] IRC data received: ${JSON.stringify(message, null, 2)}`);
+    });
+
+
 
     // ---------------- SUPPORT -------------------
 
@@ -82,7 +113,7 @@ function setupTMIEvents(client) {
 
     // Subgift - Username gifted a subscription to recipient in a channel.
     client.on('subgift', (channel, username, streakMonths, recipient, methods, userstate) => {
-        credits.increment('support.subs.gifted');
+        credits.increment('support.subs.gifters');
         credits.append('support.subs.users', username);
         console.log(`[subgift] ${username} gifted a sub to ${recipient} in ${channel} (streak: ${streakMonths})`);
     });
@@ -96,7 +127,7 @@ function setupTMIEvents(client) {
 
     // Submysterygift - Username is gifting a subscription to someone in a channel.
     client.on('submysterygift', (channel, username, numbOfSubs, methods, userstate) => {
-        credits.add('support.subs.gifted', numbOfSubs);
+        credits.add('support.subs.gifters', numbOfSubs);
         console.log(`[submysterygift] ${username} is gifting ${numbOfSubs} subs in ${channel}`);
     });
 
@@ -107,11 +138,6 @@ function setupTMIEvents(client) {
         console.log(`[subscription] ${username} subscribed in ${channel}: ${message}`);
     });
 
-    // Messagedeleted - Message was deleted/removed.
-    client.on('messagedeleted', (channel, username, deletedMessage, userstate) => {
-        credits.increment("moderation.deletedMessages");
-        console.log(`[messagedeleted] ${username}'s message deleted in ${channel}: ${deletedMessage}`);
-    });
 
     // Unhost - Channel ended the current hosting.
     client.on('unhost', (channel, viewers) => {
