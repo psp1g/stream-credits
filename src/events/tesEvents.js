@@ -4,33 +4,24 @@ const { Credits } = require('../data/credits');
 
 require('dotenv').config(); 
 
-let currentStreamCredits = credits; // Default to today's credits
-
 tes.on("stream.online", (event) => {
     console.log(`🔴 Stream went online: ${event.broadcaster_user_name}`);
     
-    // Create new log file for this stream
-    const timestamp = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
-    const logFileName = `${timestamp}.json`;
-    
-    currentStreamCredits = Credits.createInstance(logFileName);
-    currentStreamCredits.startNewStream();
+    credits.startNewStream();
 });
 
 tes.on("stream.offline", (event) => {
     console.log(`⚫ Stream went offline: ${event.broadcaster_user_name}`);
     
-    if (currentStreamCredits) {
-        currentStreamCredits.endStream();
-    }
+    credits.endStream();
 });
 
 tes.on("channel.update", (event) => {
     console.log(`${event.broadcaster_user_name}'s new title is ${event.title}`);
     console.log(`${event.broadcaster_user_name}'s new category is ${event.category_name}`);
     
-    currentStreamCredits.append('stream.titleHistory', event.title);
-    currentStreamCredits.append('stream.categoryHistory', event.category_name);
+    credits.append('stream.titleHistory', event.title);
+    credits.append('stream.categoryHistory', event.category_name);
 });
 
 
@@ -40,7 +31,7 @@ tes.on("channel.shared_chat.begin", (event) => {
     event.participants.forEach(participant => {
         const guestName = participant.broadcaster_user_name;
         if (guestName.toLowerCase() !== mainChannel) {
-            if (currentStreamCredits.appendUnique('stream.specialGuests', guestName)) {
+            if (credits.appendUnique('stream.specialGuests', guestName)) {
                 console.log(`[special guest] Added ${guestName} to special guests list`);
             }
         }
@@ -54,43 +45,47 @@ tes.on("channel.subscribe", (event) => {
     } else {
         console.log(`Thank you ${user_login} for subbing!`);
     }
-    // Use currentStreamCredits instead of credits
+    // Use credits instead of currentStreamCredits
 });
 
 tes.on("channel.ban", (event) => {
-    // Use currentStreamCredits for all tracking
+    // Use credits for all tracking
     if (event.ends_at !== null) {
-        currentStreamCredits.increment("moderation.timeouts");
+        credits.increment("moderation.timeouts");
     } else {
-        currentStreamCredits.increment('moderation.bans');
+        credits.increment('moderation.bans');
     }
 
+    if (event.reason.includes("NUKED")) {
+        credits.increment("blicky.nuked");
+    }
+    
     // Blicky
     if (event.reason && event.reason.toLowerCase().includes("emote detected")) {
         
         const lowerReason = event.reason.toLowerCase();
         
         if (lowerReason.includes("xqc")) {
-            currentStreamCredits.increment("blicky.xqc");
+            credits.increment("blicky.xqc");
         }
         if (lowerReason.includes("hasan")) {
-            currentStreamCredits.increment("blicky.hasanabi");
+            credits.increment("blicky.hasanabi");
         }
         if (lowerReason.includes("poki")) {
-            currentStreamCredits.increment("blicky.pokimane");
+            credits.increment("blicky.pokimane");
         }
         if (lowerReason.includes("miz")) {
-            currentStreamCredits.increment("blicky.mizkif");
+            credits.increment("blicky.mizkif");
         }
     }
 
 
     // TRACK MODERATOR ACTIONS
     const chatterPath = `stream.moderators.${event.moderator_user_name}`;
-    if (currentStreamCredits.get(chatterPath) === undefined) {
-        currentStreamCredits.set(chatterPath, 1);
+    if (credits.get(chatterPath) === undefined) {
+        credits.set(chatterPath, 1);
     } else {
-        currentStreamCredits.add(chatterPath, 50);
+        credits.add(chatterPath, 50);
     }
 
 });
@@ -100,6 +95,18 @@ tes.on("revocation", (subscriptionData) => {
     // perform necessary cleanup here
 });
 
-// Export the current stream credits instance
-module.exports = { currentStreamCredits };
+// Handle TES disconnection - force reconnect
+tes.on('disconnected', () => {
+    console.log('[TES] Disconnected - forcing reconnection...');
+    
+    // Force reconnect TMI client too
+    const tmiClient = require('../listeners/tmi');
+    if (tmiClient && tmiClient.readyState() !== 'OPEN') {
+        console.log('[TES] Also forcing TMI reconnection...');
+        tmiClient.connect().catch(console.error);
+    }
+});
+
+// No need to export anything - everything uses the default credits instance
+module.exports = {};
 

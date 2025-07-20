@@ -1,11 +1,11 @@
-<% if (data.watchStreak && Object.keys(data.watchStreak).length > 0) { %>
+<% if (data.watchStreaks && Object.keys(data.watchStreaks).length > 0) { %>
 <div class="line">
     <div class="header">LONGEST WATCH STREAKS</div>
     <br>
     <div class="container-fluid chatters">
         <div class="row">
             <% 
-            const topChattersArray = Object.entries(data.watchStreak)
+            const topChattersArray = Object.entries(data.watchStreaks)
                 .sort((a, b) => b[1] - a[1])
                 .slice(0, 20);
             const leftColumn = topChattersArray.filter((item, idx) => idx % 2 === 0);

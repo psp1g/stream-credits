@@ -6,8 +6,8 @@ let animationStopped = false;
 let logoTimeoutId, scrollTimeoutId;
 
 function scrollAnimation() {
-    const height = $('#scrolling').height() - 1400 ;
-    const pixelsPerSecond = 10000; // Adjust this value to control speed
+    const height = $('#scrolling').height();
+    const pixelsPerSecond = 100; // Adjust this value to control speed
     const time = (height + 300) / pixelsPerSecond * 1000; // Convert to milliseconds
 
     console.log("Starting animation, height:", height, "time:", time);
@@ -27,7 +27,23 @@ function scrollAnimation() {
             .animate({ top: `-${height + 300}px` }, { 
                 duration: time, 
                 queue: false, 
-                easing: "linear" 
+                easing: "linear",
+                step: function() {
+                    // Check if enjoyedstay is in the middle of screen
+                    const enjoyedstayElement = $('#enjoyedstay');
+                    if (enjoyedstayElement.length) {
+                        const elementTop = enjoyedstayElement.offset().top;
+                        const elementHeight = enjoyedstayElement.outerHeight();
+                        const elementCenter = elementTop + (elementHeight / 2);
+                        const screenCenter = $(window).height() / 2;
+                        
+                        // If element center is near screen center (within 50px tolerance)
+                        if (Math.abs(elementCenter - screenCenter) < 100) {
+                            $('#scrolling').stop();
+                            console.log('Stopped animation - enjoyedstay is centered');
+                        }
+                    }
+                }
             });
         
          $('#logocontainer')
@@ -57,7 +73,7 @@ function scrollAnimation() {
                 });
         }, 143000); // 2 minutes 23 seconds
 
-    }, 100);
+    }, 5000);
 }
 
 // Stop scrolling animation on actual user scroll
@@ -77,8 +93,8 @@ function stopScrollAnimation() {
 $(window).on('wheel touchmove scroll', stopScrollAnimation);
 
 // Always start at the top on reload
-// window.onbeforeunload = function () {
-//     window.scrollTo(0, 0);
-// };
+window.onbeforeunload = function () {
+    window.scrollTo(0, 0);
+};
 
 

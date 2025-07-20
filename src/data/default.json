@@ -56,19 +56,8 @@
     "raiders": []
   },
   "shoutout": [],
-  "moderators": {
-    "useful": ["Ratatas1g", "nndiana", "Flovrek"],
-    "cosmetic": ["COMMANDA_U", "P4ttie"],
-    "absent": ["Exerpas", "IsMelkony"],
-    "allMods": [
-      "Ratatas1g",
-      "Flovrek",
-      "ftk789",
-      "nndiana"
-    ]
-  },
   "presentStreak": [],
-  "watchStreak": [],
+  "watchStreaks": [],
   "present": [],
   "creditedInHalfLifeSpeedrun": [],
 
@@ -121,7 +110,8 @@
     "xqc": 0,
     "pokimane": 0,
     "hasanabi": 0,
-    "mizkif": 0
+    "mizkif": 0,
+    "nuked": 0
   },
   "lastEvent": null
 }

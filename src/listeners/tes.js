@@ -82,6 +82,7 @@ async function unsubscribeFromAll() {
     }
 }
 
+unsubscribeFromAll();
 setTimeout(logSubscriptions, 10000);
 
 

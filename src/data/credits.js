@@ -103,16 +103,36 @@ class Credits {
         }
     }
 
-    save() {
+    save(force=false) {
+        // Ensure we're using today's file before saving
+        
         // Only save if stream is live or if explicitly ending the stream (isLive === false)
-        if (this.data.stream && (this.data.stream.isLive === true || this.data.stream.isLive === false)) {
+        if ( force || (this.data.stream && (this.data.stream.isLive === true))) {
             fs.writeFileSync(this.dataFile, JSON.stringify(this.data, null, 2));
         }
     }
 
     startNewStream() {
         console.log(`📝 Starting new stream log: ${this.logFileName}`);
-        this.data = { ...this.defaults };
+        
+        // Check if we need to update to today's file (in case program ran across days)
+        const todayFileName = this.getLogName();
+        if (this.logFileName !== todayFileName) {
+            console.log(`📅 Switching from ${this.logFileName} to ${todayFileName}`);
+            this.logFileName = todayFileName;
+            this.dataFile = path.join(LOGS_DIR, this.logFileName);
+        }
+        
+        // If file already exists for today, load it first instead of wiping
+        if (fs.existsSync(this.dataFile)) {
+            console.log(`📂 Loading existing file: ${this.logFileName}`);
+            this.data = this.load();
+        } else {
+            console.log(`📄 Creating new file: ${this.logFileName}`);
+            this.data = { ...this.defaults };
+        }
+        
+        // Set stream as live and save
         this.data.stream.startTime = new Date().toISOString();
         this.data.stream.isLive = true;
         this.save();
@@ -123,7 +143,7 @@ class Credits {
         console.log(`🔚 Ending stream log: ${this.logFileName}`);
         this.data.stream.endTime = new Date().toISOString();
         this.data.stream.isLive = false;
-        this.save();
+        this.save(true);
     }
 
     reset() {
@@ -236,106 +256,7 @@ class Credits {
         return new Credits(logFileName);
     }
 
-    static analyzeAttendanceStreaks() {
-        const logs = this.getAllLogs();
-        const userAttendance = {}; // { username: [dates] }
-        
-        // Collect all present users from all logs
-        logs.forEach(log => {
-            try {
-                const logData = JSON.parse(fs.readFileSync(path.join(LOGS_DIR, log.filename), 'utf8'));
-                const presentUsers = logData.present || [];
-                const date = log.date;
-                
-                presentUsers.forEach(username => {
-                    if (!userAttendance[username]) {
-                        userAttendance[username] = [];
-                    }
-                    userAttendance[username].push(date);
-                });
-            } catch (e) {
-                console.error(`Error reading ${log.filename}:`, e);
-            }
-        });
-        
-        // Calculate streaks for each user
-        const userStreaks = {};
-        
-        Object.entries(userAttendance).forEach(([username, dates]) => {
-            // Sort dates chronologically
-            dates.sort((a, b) => new Date(a) - new Date(b));
-            
-            let streaks = [];
-            let currentStreak = [dates[0]];
-            
-            for (let i = 1; i < dates.length; i++) {
-                const prevDate = new Date(dates[i - 1]);
-                const currentDate = new Date(dates[i]);
-                const dayDiff = (currentDate - prevDate) / (1000 * 60 * 60 * 24);
-                
-                if (dayDiff === 1) {
-                    // Consecutive day
-                    currentStreak.push(dates[i]);
-                } else {
-                    // Streak broken
-                    if (currentStreak.length >= 2) {
-                        streaks.push({
-                            startDate: currentStreak[0],
-                            endDate: currentStreak[currentStreak.length - 1],
-                            length: currentStreak.length,
-                            dates: [...currentStreak]
-                        });
-                    }
-                    currentStreak = [dates[i]];
-                }
-            }
-            
-            // Don't forget the last streak
-            if (currentStreak.length >= 2) {
-                streaks.push({
-                    startDate: currentStreak[0],
-                    endDate: currentStreak[currentStreak.length - 1],
-                    length: currentStreak.length,
-                    dates: [...currentStreak]
-                });
-            }
-            
-            if (streaks.length > 0) {
-                userStreaks[username] = streaks;
-            }
-        });
-        
-        // Flatten all streaks and sort by length
-        const allStreaks = [];
-        Object.entries(userStreaks).forEach(([username, streaks]) => {
-            streaks.forEach(streak => {
-                allStreaks.push({
-                    username,
-                    ...streak
-                });
-            });
-        });
-        
-        // Sort by streak length (longest first)
-        allStreaks.sort((a, b) => b.length - a.length);
-        
-        // Display results
-        console.log('\n🏆 ATTENDANCE STREAKS (3+ days)');
-        console.log('=====================================');
-        
-        if (allStreaks.length === 0) {
-            console.log('No streaks of 3+ days found.');
-        } else {
-            allStreaks.forEach((streak, index) => {
-                console.log(`${index + 1}. ${streak.username} - ${streak.length} days`);
-                console.log(`   ${streak.startDate} to ${streak.endDate}`);
-                console.log(`   Dates: ${streak.dates.join(', ')}`);
-                console.log('');
-            });
-        }
-        
-        return allStreaks;
-    }
+    
 }
 
 // Default instance for current day

@@ -7,7 +7,6 @@ body {
     min-height: 100vh;
     text-align: center;
     font-size: 2rem;
-    filter: blur(0.8px);
     position: absolute;
     /* Remove: width: 1850px; */
     /* Remove: margin: auto; */
@@ -56,17 +55,17 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
 
 /* CRT */
 
-  html { 
-        /* text-shadow: 0.03rem 0 0.03rem #ea36afcc, -0.06rem 0 0.01rem #75fa69cc; */
-        text-shadow: 0.03rem 0 0.03rem #ea36afcc, -0.06rem 0 0.01rem #75fa69cc, 0 2px 2px rgba(0, 0, 0, 0.852);
-        /* text-shadow: 0 2px 2px rgba(0, 0, 0, 0.852); */
-        letter-spacing: 0.06em;
-        animation-duration: 0.001s;
-        /* animation-name: textflicker; */
-        animation-iteration-count: infinite;
-        animation-direction: alternate;
+html { 
+      /* text-shadow: 0.03rem 0 0.03rem #ea36afcc, -0.06rem 0 0.01rem #75fa69cc; */
+      /* text-shadow: 0.03rem 0 0.03rem #ea36afcc, -0.06rem 0 0.01rem #75fa69cc, 0 2px 2px rgba(0, 0, 0, 0.852); */
+      text-shadow: 0 0 3px rgba(0, 0, 0, 0.752);
+      letter-spacing: 0.06em;
+      animation-duration: 0.001s;
+      /* animation-name: textflicker; */
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
 
-        }
+}
 
  @keyframes textflicker {
     from {
@@ -81,7 +80,6 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
 
 *{
   font-family: 'CustomFont', sans-serif;
-  letter-spacing: 0.2rem;
   /* color: rgb(255, 255, 255); */
   color: #f87600
 }
@@ -174,7 +172,7 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
   position: absolute;
   left: 1.7rem;
 
-  transform: scaleX(0.9);
+  /* transform: scaleX(0.9); */
 }
 
   #logocontainer {
@@ -470,7 +468,6 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
 .discordlogo {
   width: 40vw;
   height: 20vw;
-  transform: translateY(-3rem);
 }
 
 .closeLineHeight {
@@ -483,8 +480,8 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
 
 
 #enjoyedstay{
-  margin-top: 40%;
-  margin-bottom: 25%;
+  margin-top: 800px;
+  margin-bottom: 800px;
 }
 
 .upperCase {
