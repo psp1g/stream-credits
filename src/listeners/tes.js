@@ -86,4 +86,4 @@ unsubscribeFromAll();
 setTimeout(logSubscriptions, 10000);
 
 
-module.exports = tes;
+module.exports = { tes, logSubscriptions };

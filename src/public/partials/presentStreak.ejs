@@ -16,7 +16,11 @@
                 <% leftColumn.forEach(([name, count]) => { %>
                     <div class="line-content">
                         <div class="left bigtext shiftright"><%= count %></div>
-                        <div class="right"><%= name %></div>
+                         <div class="right">
+                        <div class="chatterName" >
+                            <%= name %>
+                        </div>
+                    </div>
                     </div>
                 <% }); %>
             </div>
@@ -26,7 +30,11 @@
                 <% rightColumn.forEach(([name, count]) => { %>
                     <div class="line-content">
                         <div class="left bigtext shiftright"><%= count %></div>
-                        <div class="right"><%= name %></div>
+                         <div class="right">
+                        <div class="chatterName" >
+                            <%= name %>
+                        </div>
+                    </div>
                     </div>
                 <% }); %>
             </div>

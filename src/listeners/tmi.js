@@ -1,18 +1,25 @@
 const tmi = require('tmi.js');
 const { setupTMIEvents } = require('../events/tmiEvents');
+const { setupTMICommands } = require('../events/tmiCommands');
 require('dotenv').config();
 
+console.log(`[debug] Attempting to connect to channel: ${process.env.TWITCH_CHANNEL_NAME}`);
+
 const tmiClient = new tmi.Client({
-    options: { debug: false },
+    options: { 
+        debug: false // Enable debug to see more connection info
+    },
     connection: {
         reconnect: true,
-        secure: false,
+        secure: true, // Try with secure connection
+        port: 443
     },
     channels: [ process.env.TWITCH_CHANNEL_NAME ]
 });
 
 // Setup all TMI events
 setupTMIEvents(tmiClient);
+setupTMICommands(tmiClient);
 
 // Connection-related events that need to stay here for connection management
 tmiClient.on('connected', (address, port) => {
@@ -25,51 +32,28 @@ tmiClient.on('connecting', (address, port) => {
 
 tmiClient.on('disconnected', (reason) => {
     console.log(`[disconnected] Disconnected: ${reason}`);
-    console.log(`[disconnected] Forcing reconnection...`);
-    
-    // Force reconnect
-    setTimeout(() => {
-        tmiClient.connect().catch((error) => {
-            console.error('[reconnect] Failed to reconnect:', error);
-        });
-    }, 2000); // Wait 2 seconds then reconnect
+    // Remove the manual reconnection since TMI handles it automatically
 });
 
 tmiClient.on('logon', () => {
     console.log(`[logon] Connection established, sending info to server`);
 });
 
-tmiClient.on('ping', () => {
-    console.log(`[ping] Received PING from server`);
-});
-
-tmiClient.on('pong', (latency) => {
-    console.log(`[pong] PONG sent, latency: ${latency}ms`);
-});
-
 tmiClient.on('reconnect', () => {
-    console.log(`[reconnect] Attempting to reconnect to Twitch...`);
+    console.log(`[reconnect] TMI.js is reconnecting...`);
 });
 
-// Handle connection errors
 tmiClient.on('notice', (channel, msgid, message) => {
     console.log(`[notice] ${msgid}: ${message}`);
 });
 
-// Handle any connection errors
 tmiClient.on('error', (error) => {
     console.error(`[error] TMI connection error:`, error);
-    // TMI will handle reconnection automatically due to reconnect: true
 });
-
-
-// Join events (optional, for debugging)
-// client.on('join', (channel, username, self) => {
-//     console.log(`[join] ${username} joined ${channel}`);
-// });
 
 // Connect with error handling
 tmiClient.connect().catch((error) => {
     console.error('[connect] Failed to connect to Twitch:', error);
-    console.log('[connect] TMI will attempt to reconnect automatically...');
 });
+
+module.exports = tmiClient;

@@ -1,5 +1,6 @@
 const credits = require('../data/credits');
 const emoteTracker = require('../emotes');
+const {getExcludedUsers} = require('../data/postprocess');
 
 function setupTMIEvents(client) {
     
@@ -20,9 +21,16 @@ function setupTMIEvents(client) {
     client.on('message', (channel, tags, message, self) => {
         username = tags['display-name'];
 
+        if (getExcludedUsers().includes(username.toLowerCase())) {
+            return;
+        }
+
         if (tags['first-msg']) {
             console.log('FIRST MESSAGE:', username, message);
             credits.increment('messages.firstTimeMessages');
+            if (message.includes('test')) {
+                credits.increment('messages.firstTimeTesters');
+            }
         }
 
         if (message === 'wuh') {
@@ -60,12 +68,6 @@ function setupTMIEvents(client) {
             }
         }
 
-        // ---- EMOTE SPECIFIC ----
-        if (tags['first-msg']) {
-            if (message.includes('test')) {
-                credits.increment('emotes.firstTimeTesters');
-            }
-        }
 
         // ---- EMOTE TRACKING (now handled by emoteTracker) ----
         emoteTracker.trackEmotes(message, tags.emotes, credits);
@@ -79,8 +81,8 @@ function setupTMIEvents(client) {
             const rawString = message.raw;
             
             // Extract display-name
-            const username = tags['display-name']
-            
+            const username = message.tags['display-name']
+
             // Extract msg-param-value
             const valueMatch = rawString.match(/msg-param-value=(\d+)/);
             const streakValue = valueMatch ? parseInt(valueMatch[1]) : null;
@@ -97,7 +99,6 @@ function setupTMIEvents(client) {
         }
 
         // Serialize the raw IRC message object for logging
-        // console.log(`[raw_message] IRC data received: ${JSON.stringify(message, null, 2)}`);
     });
 
 
@@ -113,8 +114,8 @@ function setupTMIEvents(client) {
 
     // Subgift - Username gifted a subscription to recipient in a channel.
     client.on('subgift', (channel, username, streakMonths, recipient, methods, userstate) => {
-        credits.increment('support.subs.gifters');
-        credits.append('support.subs.users', username);
+        credits.increment('support.subs.giftsubCount');
+        credits.append('support.subs.gifters', username);
         console.log(`[subgift] ${username} gifted a sub to ${recipient} in ${channel} (streak: ${streakMonths})`);
     });
 
@@ -127,7 +128,7 @@ function setupTMIEvents(client) {
 
     // Submysterygift - Username is gifting a subscription to someone in a channel.
     client.on('submysterygift', (channel, username, numbOfSubs, methods, userstate) => {
-        credits.add('support.subs.gifters', numbOfSubs);
+        credits.append('support.subs.gifters', username);
         console.log(`[submysterygift] ${username} is gifting ${numbOfSubs} subs in ${channel}`);
     });
 

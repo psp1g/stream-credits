@@ -66,12 +66,12 @@ function addByPath(obj, path, value) {
 class Credits {
     constructor(logFileName = null) {
         this.defaults = JSON.parse(fs.readFileSync(DEFAULTS_FILE, 'utf8'));
-        this.logFileName = logFileName || this.getLogName();
+        this.logFileName = logFileName || this.getTodayLogName();
         this.dataFile = path.join(LOGS_DIR, this.logFileName);
         this.data = this.load();
     }
 
-    getLogName() {
+    getTodayLogName() {
         // Check if in development mode
         if (process.env.DEVELOPMENT === 'true') {
             return 'test.json';
@@ -79,10 +79,6 @@ class Credits {
         // Production mode - use date-based naming
         const today = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
         return `${today}.json`;
-    }
-
-    getTodayLogName() {
-        return this.getLogName(); // Use the same logic
     }
 
     getLogPath() {
@@ -116,19 +112,19 @@ class Credits {
         console.log(`📝 Starting new stream log: ${this.logFileName}`);
         
         // Check if we need to update to today's file (in case program ran across days)
-        const todayFileName = this.getLogName();
+        const todayFileName = this.getTodayLogName();
         if (this.logFileName !== todayFileName) {
             console.log(`📅 Switching from ${this.logFileName} to ${todayFileName}`);
             this.logFileName = todayFileName;
             this.dataFile = path.join(LOGS_DIR, this.logFileName);
         }
         
-        // If file already exists for today, load it first instead of wiping
+        // Load existing data for today's file if it exists, otherwise start fresh
         if (fs.existsSync(this.dataFile)) {
-            console.log(`📂 Loading existing file: ${this.logFileName}`);
+            console.log(`📂 Loading existing data from ${this.logFileName}`);
             this.data = this.load();
         } else {
-            console.log(`📄 Creating new file: ${this.logFileName}`);
+            console.log(`🔄 Creating new file with fresh defaults for ${this.logFileName}`);
             this.data = { ...this.defaults };
         }
         
@@ -186,7 +182,7 @@ class Credits {
     }
 
     getAll() {
-        postProcess(this.data, this.get.bind(this));
+        postProcess(this.data, this.get.bind(this), this.logFileName);
         this.save();
         return this.data;
     }
@@ -194,7 +190,7 @@ class Credits {
     getDefaults() {
         // Always read fresh from file for live debugging
         this.data = JSON.parse(fs.readFileSync(DEFAULTS_FILE, 'utf8'));
-        postProcess(this.data, this.get.bind(this));
+        postProcess(this.data, this.get.bind(this), this.logFileName);
         return this.data;
     }
 

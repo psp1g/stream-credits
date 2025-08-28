@@ -7,7 +7,7 @@ let logoTimeoutId, scrollTimeoutId;
 
 function scrollAnimation() {
     const height = $('#scrolling').height();
-    const pixelsPerSecond = 100; // Adjust this value to control speed
+    const pixelsPerSecond = 140; // Adjust this value to control speed
     const time = (height + 300) / pixelsPerSecond * 1000; // Convert to milliseconds
 
     console.log("Starting animation, height:", height, "time:", time);
@@ -35,12 +35,11 @@ function scrollAnimation() {
                         const elementTop = enjoyedstayElement.offset().top;
                         const elementHeight = enjoyedstayElement.outerHeight();
                         const elementCenter = elementTop + (elementHeight / 2);
-                        const screenCenter = $(window).height() / 2;
-                        
-                        // If element center is near screen center (within 50px tolerance)
-                        if (Math.abs(elementCenter - screenCenter) < 100) {
+                        const screenCenter = $(window).height() / 2 - 50; 
+                        // If element center is above screen center (no tolerance)
+                        if (elementCenter < screenCenter) {
                             $('#scrolling').stop();
-                            console.log('Stopped animation - enjoyedstay is centered');
+                            console.log('Stopped animation - enjoyedstay is above center');
                         }
                     }
                 }

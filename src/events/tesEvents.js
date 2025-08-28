@@ -1,4 +1,4 @@
-const tes = require("../listeners/tes");
+const {tes} = require("../listeners/tes");
 const credits = require('../data/credits');
 const { Credits } = require('../data/credits');
 

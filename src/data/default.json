@@ -6,38 +6,7 @@
     "categoryHistory": [],
     "specialGuests": []
   },
-  "cast": [
-    { "name": "rafael", "role": "Best Friend" },
-    { "name": "deme", "role": "The ADHD Girl" },
-    { "name": "ohnepixel", "role": "Costreamer" },
-    { "name": "Lucy", "role": "Kitty Cat" },
-    { "name": "SmileyBS", "role": "Old Friend" },
-    { "name": "Ted Kaczynski", "role": "The Mathematician" },
-    { "name": "ArrowCS", "role": "The Bug Man" },
-    { "name": "DIMA_WALLHACKS", "role": "Dolbaeb" },
-    { "name": "MUTY", "role": "Half Life Coach" },
-    { "name": "FURI", "role": "Father Grigori" },
-    { "name": "renyan", "role": "Plus Forward Guy" },
-    { "name": "DONA", "role": "Gang Leader" },
-    { "name": "ZOIL", "role": "Look Up" },
-    { "name": "Spaceashes", "role": "HIM" },
-    { "name": "Crowbcat", "role": "Alt Account" },
-    { "name": "FOXYCS", "role": "Local Femboy" },
-    { "name": "SL3ID3R", "role": "Runboost Stunt Assistant" },
-    { "name": "Summit1g", "role": "Self Immolation Stuntman " },
-    { "name": "whaliin", "role": "MrSwagBoss" },
-    { "name": "wuh6", "role": "Wuh" },
-    { "name": "Ketamine1g", "role": "The Dead Twin " },
-    { "name": "OTAG", "role": "Scientist, Soldier, Wizard" },
-    { "name": "ZYZZ", "role": "Mentor" },
-    { "name": "forsen", "role": "Teacher" },
-    { "name": "", "role": "" },
-    { "name": "bLitz",  "role": "The Mongolz IGL" },
-    { "name": "Techno", "role": "The Mongolz Rifler" },
-    { "name": "Senzu",  "role": "The Mongolz Rifler" },
-    { "name": "mzinho", "role": "The Mongolz Rifler" },
-    { "name": "910",    "role": "The Mongolz AWPer" }
-  ],
+  "cast": [],
   "artists": [
      { "name": "bluberry",    "role": "Sub Badges" },
      { "name": "Flourek",    "role": "Ending Credits" }
@@ -45,7 +14,7 @@
   "programmers": [
      { "name": "ftk789",    "role": "Ftk-tts, Redeems,<br> the whole stream basically" },
      { "name": "Flourek",    "role": "Papers Please, Hotline Luton,<br> Ending Credits" },
-     { "name": "devPoland",    "role": "Poland_bot Creator" }
+     { "name": "devPoland",    "role": "Poland_bot Creator,<br> CS2 Server Hoster" }
   ],
   "editors": [
     { "name": "hylight",    "role": "YouTube" },
@@ -57,7 +26,7 @@
   },
   "shoutout": [],
   "presentStreak": [],
-  "watchStreaks": [],
+  "watchStreaks": {},
   "present": [],
   "creditedInHalfLifeSpeedrun": [],
 
@@ -66,11 +35,10 @@
     "giftsubCount": 0,
     "resubCount": 0,
     "newsubCount": 0,
-    "gifters": [],
     "subs": {
       "resub": 20,
       "users": [],
-      "gifters": []
+      "gifters": {}
     },
     "cheers": {
       "total": 0,
