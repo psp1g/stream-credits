@@ -1,30 +1,15 @@
-<div class="line">
-    <div class="header">MODERATORS</div>
+<div class="segment rightCol">
     <% 
-        const moderators = (data.stream.moderatorsSorted || data.stream.moderators || []);
-        if (moderators.length > 0) {
-            const topMods = moderators.slice(0, 5);
-            const cosmeticMods = moderators.slice(5);
-    %>
-        <% if (topMods.length > 0) { %>
-        <div class="line-content">
-            <div class="left">Most Useful</div>
-            <div class="right">
-                <% topMods.forEach(mod => { %>
-                    <div><%= mod %></div>
-                <% }); %>
-            </div>
+    const moderators = (data.stream.moderatorsSorted || data.stream.moderators || []);
+    if (moderators.length > 0) {
+        %>
+    <div class="header midCaps">MODERATORS</div>
+    <div class="line-content">
+        <div class="shiftleft bigText" style="line-height: 4rem;">
+            <% moderators.forEach(mod => { %>
+                <div><%= mod %></div>
+            <% }); %>
         </div>
-        <% } %>
-        <% if (cosmeticMods.length > 0) { %>
-        <div class="line-content">
-            <div class="left">Cosmetic</div>
-            <div class="right">
-                <% cosmeticMods.forEach(mod => { %>
-                    <div><%= mod %></div>
-                <% }); %>
-            </div>
-        </div>
-        <% } %>
+    </div>
     <% } %>
 </div>

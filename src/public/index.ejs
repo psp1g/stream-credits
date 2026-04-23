@@ -13,7 +13,7 @@
     <link rel="manifest" href="img/icon/site.webmanifest">
 
 </head>
-<body>
+<body class="midText">
     <div id="logocontainer">
         <img id="psplogo" src="img/1g.png" alt="">
     </div>
@@ -22,31 +22,36 @@
         
 
         <%- include('partials/director') %>
-        <%- include('partials/titles') %>
         <%- include('partials/sharedchat') %>
-        <%- include('partials/raids') %>
-        <%- include('partials/presentStreak') %>
-        <%- include('partials/messages') %>
-        <%- include('partials/emotes') %>
-        <%- include('partials/moderators') %>
-        <%- include('partials/moderation') %>
-        <%- include('partials/sponsor') %>
-        <%- include('partials/cast') %>
-        <%- include('partials/people') %>
         <br><br><br><br>
-        <%- include('partials/logos') %>
+        <%- include('partials/titles') %>
+        <!-- <%- include('partials/raids') %> -->
+        <!-- <%- include('partials/presentStreak') %> -->
+        <br><br><br><br>
+        <%- include('partials/messages') %>
         <br><br>
-        <%- include('partials/presentAndHalfLife') %>
+        <%- include('partials/moderators') %>
+        <br><br>
+        <%- include('partials/moderation') %>
+        <br><br>
+        <%- include('partials/emotes') %>
+        <!-- <%- include('partials/sponsor') %> -->
+        <%- include('partials/people') %>
+        <!-- <%- include('partials/cast') %> -->
+        <br><br><br><br>
+        <!-- <%- include('partials/logos') %> -->
+        <br><br>
+        <!-- <%- include('partials/presentAndHalfLife') %> -->
    
         
-        <div id="enjoyedstay" class="header textbig">
+        <div id="enjoyedstay" class="header midCaps">
             We Hope You Enjoyed Your Stay
         </div>
     </div>
 
     <!-- <img id="background" src="img/output.webp" alt="Background"> -->
-    <video id="background" autoplay muted playsinline>
-        <source src="img/longdriv.mp4" type="video/mp4">
+    <video id="background"  muted playsinline>
+        <source src="img/tomokot.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
 

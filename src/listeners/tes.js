@@ -28,7 +28,7 @@ const tes = new TES({
     listener: {
         type: "webhook",
         server: app,
-        baseURL: "https://psp.flourek.dev",
+        baseURL: "https://tomokomot.flourek.dev",
         secret: process.env.WEBHOOKS_SECRET,
     }
 });

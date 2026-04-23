@@ -4,9 +4,8 @@ body {
     margin: 0;
     padding: 0;
     width: 100vw;
-    min-height: 100vh;
+    height: 100vh;
     text-align: center;
-    font-size: 2rem;
     position: absolute;
     /* Remove: width: 1850px; */
     /* Remove: margin: auto; */
@@ -22,14 +21,13 @@ html, body {
   
 @font-face {
   font-family: 'CustomFont';
-  src: url('./FONT.otf') format('opentype');
+  src: url('./wtf.ttf') format('opentype');
 }
 
 
 
 /* Hide scrollbars everywhere */
 * {
-    scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* Internet Explorer 10+ */
     box-sizing: border-box;
 }
@@ -81,7 +79,8 @@ html {
 *{
   font-family: 'CustomFont', sans-serif;
   /* color: rgb(255, 255, 255); */
-  color: #f87600
+  color: #ebebeb;
+  text-shadow: 2px 2px rgba(0, 0, 0, 0.5);
 }
 
 
@@ -94,7 +93,6 @@ html {
   }
   
   a b {
-    font-size: 4em;
     color: #7733ff;
     text-shadow: 0 0 4px black;
   }
@@ -163,17 +161,19 @@ html {
     }
   }
 
-  #scrolling {
+#scrolling {
   display: flex;
   flex-direction: column;
   align-items: center;
   top: 150%;
   display: block;
   position: absolute;
-  left: 1.7rem;
-
+  padding: 0 2rem;
+    width: 100%;
   /* transform: scaleX(0.9); */
 }
+
+
 
   #logocontainer {
     width: 100vw;
@@ -182,12 +182,12 @@ html {
     position: absolute;
   }
   
-  #psplogo{
-    width: 71vw !important;
-  display: none;
-  left: 230px;
-  position: absolute;
-  top: -106px;
+#psplogo{
+    width: 59vw !important;
+    display: none;
+    left: 408px;
+    position: absolute;
+    top: 174px;
 }
 
 #background {
@@ -200,6 +200,7 @@ html {
     height: 100%;
 }
 
+
 .line {
     display: flex;
     flex-direction: column;
@@ -208,7 +209,14 @@ html {
     margin: 10px 0;
 }
 
+.leftCol {
+    width: 50%;
+}
 
+.rightCol {
+transform: translateX(50vw);
+    width: 50%;
+}
 
 .twoColumnsCentered {
     display: flex;
@@ -222,12 +230,16 @@ html {
 .header {
   width: 100%;
   text-align: center;
-  font-size: 3.7rem;
   line-height: 5rem;
   margin-bottom: 0.7rem;
   margin-top: 5rem;
-  transform: translateX(-1.5rem);
 }
+
+.line-left {
+    line-height: 2.8rem;
+    text-transform: uppercase;
+}
+
 .line-content {
   display: flex;
   width: 100%;
@@ -235,7 +247,6 @@ html {
   align-items: flex-start;
   margin-bottom: 1rem;
 }
-
  .left,  .right {
     flex: 1;
     padding: 0 15px;
@@ -245,47 +256,40 @@ html {
 
  .left {
     text-align: right;
-    font-size: 4.2rem ;
     margin-right: 67px;
-    transform: translateY(4px);
 }
 
 
 
  .right {
     text-align: left;
-    font-size: 5rem ;
     margin-right: 50px;
     line-height: 2.8rem;
-    text-transform: uppercase;
 }
 
 
-.bigtext {
-  font-size: 5rem !important;
+.midText,
+.midCaps {
+  font-size: 1.7rem !important;
 }
 
-.biggertext {
-  font-size: 7rem !important;
+.midCaps {
+  text-transform: uppercase;
 }
 
-.midtext {
-  font-size: 4rem !important;
-  line-height: 4rem;
+.bigText {
+  font-size: 3rem !important;
 }
 
-.smoltext {
-  font-size: 2.5rem !important;
-  line-height: 5rem;
+.line-content {
+  font-size: 3rem;
+line-height: 2.5rem;
 }
 
 .shiftright {
   transform: translateX(3rem);
 }
 
-.shiftleft {
-    transform: translateX(-1.5rem);
-}
 
 .twoColumnsCentered .left, .twoColumnsCentered .right {
     text-align: center !important;
@@ -313,10 +317,8 @@ html {
 
 
 #director {
-    font-size: 6rem;
-    height: 4rem;
-    transform: translateY(-1rem) translateX(-1.5rem);
-    margin-bottom: 100px;
+  line-height: 4rem;
+    margin-bottom: 1rem;
 }
 
 .empty-role{
@@ -345,21 +347,18 @@ html {
     align-items: center;
     justify-content: flex-end;
     margin-bottom: 0rem;
-    width: 100%;
+    width: 72%;
 }
 
 .emote-img {
     height: 4rem;
-    margin-top: 2rem;
     margin-right: 1rem;
-    margin-left: auto;
     flex-shrink: 0;
     max-width: none;
 }
 
 .emote-count {
     vertical-align: text-top;
-    font-size: 5rem;
     flex-shrink: 0;
     white-space: nowrap;
     text-align: left;
@@ -388,7 +387,6 @@ html {
     min-width: 250px; /* Minimum width before wrapping */
     max-width: 33.333%; /* Maximum 3 per row */
     text-align: center;
-    font-size: 3rem;
     margin-bottom: 1rem;
 }
 
@@ -413,7 +411,6 @@ html {
     min-width: 180px; /* Smaller minimum width */
     max-width: 25%; /* Maximum 4 per row */
     text-align: center;
-    font-size: 2.4rem; /* Reduced from 3rem */
     margin-bottom: 0.5rem; /* Reduced from 1rem */
     text-align: center !important;
     transform: none !important;
@@ -467,7 +464,7 @@ html {
   /* animation-name: logoflicker; */
   animation-iteration-count: infinite;
   animation-direction: alternate;
-    filter: brightness(0) saturate(100%) invert(54%) sepia(98%) saturate(7492%) hue-rotate(-320deg) brightness(151%) contrast(104%);
+  /* filter: brightness(0) saturate(100%) invert(54%) sepia(98%) saturate(7492%) hue-rotate(-320deg) brightness(151%) contrast(104%); */
 }
 
 .discordlogo {
@@ -492,4 +489,17 @@ html {
 
 .upperCase {
   text-transform: uppercase;
+}
+
+.chattersShift {
+ transform: translateX(1.5rem);
+}
+
+.seg-messages .right {
+  max-width: 14.4rem;
+  margin-left: 0 !important;
+}
+
+.seg-messages .left {
+  margin-right: 0 !important;
 }

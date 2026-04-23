@@ -1,9 +1,9 @@
 <div class="line">
-    <div class="header">CAST</div>
+    <div class="header midCaps">CAST</div>
     <% data.cast.forEach(person => { %>
         <div class="line-content">
-            <div class="left"><%= person.role %></div>
-            <div class="right <%= person.name ? '' : 'empty-role' %>"><%- person.name || '&nbsp;' %></div>
+            <div class="left bigText"><%= person.role %></div>
+            <div class="right bigText <%= person.name ? '' : 'empty-role' %>"><%- person.name || '&nbsp;' %></div>
         </div>
     <% }); %>
 </div>

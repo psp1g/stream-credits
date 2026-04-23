@@ -1,66 +1,71 @@
 
 
-<div class="line">
-<div class="header">MESSAGES</div>
-<div class="line-content">
+<div class="segment seg-messages leftCol">
+<div class="header midCaps">MESSAGES</div>
+
+<div class="line-content bigText">
     <div class="left">Total Messages</div>
     <div class="right"><%= data.messages.total %></div>
 </div>
-<div class="line-content">
+<div class="line-content bigText">
     <div class="left">Unique Chatters</div>
     <div class="right"><%= data.messages.chatterCount %></div>
 </div>
-<div class="line-content">
+<div class="line-content bigText">
     <div class="left">First Time Chatters</div>
     <div class="right"><%= data.messages.firstTimeMessages %></div>
 </div>
-<div class="line-content">
+<div class="line-content bigText">
     <div class="left">First Time Testers</div>
     <div class="right"><%= data.messages.firstTimeTesters %></div>
 </div>
+
 </div>
 
-
-
-<div class="line">
-<div class="header">TOP CHATTERS</div>
 <br>
-<div class="container-fluid chatters">
+<br>
+<br>
+<br>
+
+<div class="segment seg-chatters">
+        
     <div class="row">
-        <!-- Left Column -->
-        <div class="col-5">
+
+    <div class="col-6 ">
+        <div class="header midCaps">TOP CHATTERS</div>
             <% 
             const topChattersArray = Object.entries(data.messages.topChatters);
-            const leftColumn = topChattersArray.filter((item, idx) => idx % 2 === 0);
-            %>
-            <% leftColumn.forEach(([name, count]) => { %>
-                <div class="line-content">
-                    <div class="left bigtext shiftright"><%= count %></div>
-                    <div class="right">
-                        <div class="chatterName" >
-                            <%= name %>
-                        </div>
-                    </div>
-                </div>
-            <% }); %>
-        </div>
-        
-        <!-- Right Column -->
-        <div class="col-5">
-            <% 
-            const rightColumn = topChattersArray.filter((item, idx) => idx % 2 === 1);
+            const rightColumn = topChattersArray.filter((item, idx) => idx % 2 === 0);
             %>
             <% rightColumn.forEach(([name, count]) => { %>
                 <div class="line-content">
-                    <div class="left bigtext shiftright"><%= count %></div>
-                     <div class="right">
+                    <div class="left bigText me-4">
+                        <div class="chatterName" >
+                            <%= name %>
+                        </div>
+                    </div>
+                    <div class="right bigText "><%= count %></div>
+                </div>
+            <% }); %>
+    </div>
+
+
+<div class="col-6 chattersShift">
+        <div class="header midCaps">TOP CHATTERS</div>
+        <!-- Left Column -->
+            <% 
+            const rightChatterColumn = topChattersArray.filter((item, idx) => idx % 2 === 1);
+            %>
+            <% rightChatterColumn.forEach(([name, count]) => { %>
+                <div class="line-content">
+                    <div class="left bigText shiftright"><%= count %></div>
+                    <div class="right bigText">
                         <div class="chatterName" >
                             <%= name %>
                         </div>
                     </div>
                 </div>
             <% }); %>
-        </div>
     </div>
 </div>
 </div>

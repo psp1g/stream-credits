@@ -1,6 +1,6 @@
 <% if (data.watchStreaks && Object.keys(data.watchStreaks).length > 0) { %>
 <div class="line">
-    <div class="header">LONGEST WATCH STREAKS</div>
+    <div class="header midCaps">LONGEST WATCH STREAKS</div>
     <br>
     <div class="container-fluid chatters">
         <div class="row">
@@ -15,8 +15,8 @@
             <div class="col-5">
                 <% leftColumn.forEach(([name, count]) => { %>
                     <div class="line-content">
-                        <div class="left bigtext shiftright"><%= count %></div>
-                         <div class="right">
+                        <div class="left bigText shiftright"><%= count %></div>
+                         <div class="right bigText">
                         <div class="chatterName" >
                             <%= name %>
                         </div>
@@ -29,8 +29,8 @@
             <div class="col-5">
                 <% rightColumn.forEach(([name, count]) => { %>
                     <div class="line-content">
-                        <div class="left bigtext shiftright"><%= count %></div>
-                         <div class="right">
+                        <div class="left bigText shiftright"><%= count %></div>
+                         <div class="right bigText">
                         <div class="chatterName" >
                             <%= name %>
                         </div>
@@ -40,7 +40,7 @@
             </div>
         </div>
     </div>
-    <div class="header">(Only Ones Redeemed Today Are Shown)</div>
+    <div class="header midCaps">(Only Ones Redeemed Today Are Shown)</div>
 </div>
 
 <% } %>

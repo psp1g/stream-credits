@@ -8,17 +8,39 @@
   },
   "cast": [],
   "artists": [
-     { "name": "bluberry",    "role": "Sub Badges" },
-     { "name": "Flourek",    "role": "Ending Credits" }
+    {
+      "name": "Karses",
+      "role": "Concept Art"
+    },
+    {
+      "name": "same8bit",
+      "role": "Cursor"
+    },
+    {
+      "name": "Riyu",
+      "role": "Alerts"
+    }
   ],
   "programmers": [
-     { "name": "ftk789",    "role": "Ftk-tts, Redeems,<br> the whole stream basically" },
-     { "name": "Flourek",    "role": "Papers Please, Hotline Luton,<br> Ending Credits" },
-     { "name": "devPoland",    "role": "Poland_bot Creator,<br> CS2 Server Hoster" }
+    {
+      "name": "devPoland",
+      "role": "Gambling"
+    },
+    {
+      "name": "DrippyCatCS",
+      "role": "Cones"
+    },
+    {
+      "name": "ftk789",
+      "role": "Emote Streaks"
+    },
+    {
+      "name": "Flourek",
+      "role": "Ending Credits"
+    }
   ],
   "editors": [
-    { "name": "hylight",    "role": "YouTube" },
-    { "name": "DecentBV", "role": "Instagram, TikTok" }
+    { "name": "sv_dea",    "role": "YouTube" }
   ],
   "raid": {
     "totalViewers": 0,

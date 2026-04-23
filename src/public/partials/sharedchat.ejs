@@ -1,9 +1,9 @@
 <% if (data.stream && data.stream.specialGuests && data.stream.specialGuests.length > 0) { %>
-<div class="line sponsor">
-    <div class="header">SPECIAL GUESTS</div>
+<div class="segment leftCol">
+    <div class="header midCaps">SPECIAL GUESTS</div>
     
         <% data.stream.specialGuests.forEach((title, index) => { %>
-            <div class="shiftleft bigtext upperCase w-50 veryCloseLineHeight mb-4"><%= title %></div>
+            <div class="bigText veryCloseLineHeight mb-4"><%= title %></div>
         <% }); %>
         
         

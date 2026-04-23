@@ -1,20 +1,20 @@
 <% if (data.raid.raiders && data.raid.raiders.length > 0) { %>
 <div class="line">
     
-    <div class="header">RAIDS</div>
+    <div class="header midCaps">RAIDS</div>
         <% data.raid.raiders.forEach(raider => { %>
             <div class="line-content ">
-                <div class="left  ">
+                <div class="left bigText">
                     <% 
                         const randomUnits = ['Million', 'Thousand', 'Trillion', 'Billion', 'Hundred'];
                         const randomUnit = randomUnits[Math.floor(Math.random() * randomUnits.length)];
                     %>
                     <%= raider.viewers %> <%= randomUnit %> Raiders
                 </div>
-                <div class="right"><%= raider.username %></div>
+                <div class="right bigText"><%= raider.username %></div>
             </div>
         <% }); %>
-        <div class="line-content bigtext shiftleft">
+        <div class="line-content bigText shiftleft">
             <%= data.raid.totalViewers %> Total Raiders 
         </div>
     </div>

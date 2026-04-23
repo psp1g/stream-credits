@@ -13,8 +13,8 @@
 
     <style>
         body {
-            background: #1a1a1a url('img/spinnu.webp') no-repeat center center fixed;
-            background-size: cover;
+            background: #1a1a1a url('img/1g.png') no-repeat center center fixed;
+            background-size: contain;
             color: #ccc;
             font-family: sans-serif;
             padding: 2rem;
@@ -59,12 +59,10 @@
             border: 2px solid yellow;
         }
         .log-date {
-            font-size: 1.2rem;
             font-weight: bold;
         }
         .log-size {
             color: #888;
-            font-size: 0.9rem;
         }
         .todaybutton {
             width: 400px;
@@ -72,7 +70,6 @@
             align-items: center;
             justify-content: center;
             height: 5rem;
-            font-size: 1.5rem;
             background-color: yellow;
         }
         .todaybutton:hover {
@@ -80,11 +77,24 @@
             color: white;
         }
 
+        .midText,
+        .midCaps {
+            font-size: 1.7rem;
+        }
+
+        .midCaps {
+            text-transform: uppercase;
+        }
+
+        .bigText {
+            font-size: 3rem;
+        }
+
     </style>
 </head>
-<body>
+<body class="midText">
     <div class="container">
-        <h1 class="text-center mb-4">PSP Stream Credit Logs</h1>
+        <h1 class="text-center mb-4">Tomokomot Stream Credit Logs</h1>
         
         <% if (logs.length === 0) { %>
             <div class="alert alert-info text-center">
@@ -94,15 +104,15 @@
             <div class="d-flex flex-column align-items-center">
                     
                     <div class="text-center my-4 ">
-                        <a href="/credits" class="btn todaybutton ">View Latest Credits</a>
+                        <a href="/credits" class="btn todaybutton midText">View Latest Credits</a>
                     </div>
 
                 <% logs.forEach(log => { %>
                     <div class="log-item mb-3" style="cursor:pointer; width: 400px; max-width: 100%;" onclick="window.location='/credits?date=<%= log.date %>'">
                         <div class="row">
                             <div class="col-9">
-                                <div class="log-date"><%= log.displayName %></div>
-                                <div class="log-size">
+                                <div class="log-date midText"><%= log.displayName %></div>
+                                <div class="log-size midText">
                                     Size: <%= Math.round(log.size / 1024) %>KB | 
                                     Modified: <%= new Date(log.modified).toLocaleDateString() %>
                                 </div>

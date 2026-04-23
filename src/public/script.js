@@ -7,17 +7,32 @@ let logoTimeoutId, scrollTimeoutId;
 
 function scrollAnimation() {
     const height = $('#scrolling').height();
-    const pixelsPerSecond = 140; // Adjust this value to control speed
-    const time = (height + 300) / pixelsPerSecond * 1000; // Convert to milliseconds
-
+    const pixelsPerSecond = 50; // Adjust this value to control speed
+    let time = (height + 300) / pixelsPerSecond * 1000; // Convert to milliseconds
+    const enjoyedStayOffset = 150;
+    // time = 1000; // Convert to milliseconds
+    // $("video")[0].currentTime = 120;
     console.log("Starting animation, height:", height, "time:", time);
-
+    
+    // initial black screen
     logoTimeoutId = setTimeout(() => {
         if (animationStopped) return;
-       console.log("Logo animation starting");
+        console.log("Logo animation starting");
         $('#psplogo').css({ display: 'block' });
-    }, 2000);
-
+    }, 1000);
+    
+    
+    $('#logocontainer')
+    .delay(3000) // 1 second delay
+    .animate({ opacity: 0 }, { 
+        duration: 2000,
+        easing: "linear"
+    });
+    
+    setTimeout(() => {
+        $('#background')[0].play();
+    }, 4000);
+    
     scrollTimeoutId = setTimeout(() => {
         if (animationStopped) return;
         console.log("Scroll animation starting");
@@ -35,7 +50,7 @@ function scrollAnimation() {
                         const elementTop = enjoyedstayElement.offset().top;
                         const elementHeight = enjoyedstayElement.outerHeight();
                         const elementCenter = elementTop + (elementHeight / 2);
-                        const screenCenter = $(window).height() / 2 - 50; 
+                        const screenCenter = $(window).height() / 2 - enjoyedStayOffset; 
                         // If element center is above screen center (no tolerance)
                         if (elementCenter < screenCenter) {
                             $('#scrolling').stop();
@@ -45,21 +60,14 @@ function scrollAnimation() {
                 }
             });
         
-         $('#logocontainer')
-            .animate({ 'opacity': 0 }, { 
-                duration: 4000, 
-                queue: false, 
-                easing: "linear" 
-            });
-        
-        setTimeout(() => {
-            $('#psplogo')
-                .animate({ 'opacity': '0' }, { 
-                    duration: 4000, 
-                    queue: false, 
-                    easing: "linear" 
-                });
-        }, 2000);
+        // setTimeout(() => {
+        //     $('#psplogo')
+        //         .animate({ 'opacity': '0' }, { 
+        //             duration: 2000, 
+        //             queue: false, 
+        //             easing: "linear" 
+        //         });
+        // }, 00);
 
         // Fade out background after 2m 23s
         setTimeout(() => {
@@ -72,7 +80,7 @@ function scrollAnimation() {
                 });
         }, 143000); // 2 minutes 23 seconds
 
-    }, 5000);
+    }, 6000);
 }
 
 // Stop scrolling animation on actual user scroll

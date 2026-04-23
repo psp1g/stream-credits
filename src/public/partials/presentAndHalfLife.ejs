@@ -1,27 +1,15 @@
-<% if ((data.creditedInHalfLifeSpeedrun || []).length > 0 && (data.stream.categoryHistory || []).includes("Half-Life")) { %>
+
+
+<% if ((data.present || []).length > 0) { %>
 <div class="line">
-    <div class="header">CREDITED IN HALF-LIFE SPEEDRUN</div>
+    <div class="header midCaps">PASSED THE ATTENDANCE CHECK</div>
     <br>
     <div class="centeredgrid">
-        <% (data.creditedInHalfLifeSpeedrun || []).forEach(username => { %>
+        <% (data.present || []).forEach(username => { %>
             <div class="centeredgrid-item">
-                <div class="right"><%= username %></div>
+                <div class="right bigText"><%= username %></div>
             </div>
         <% }); %>
     </div>
 </div>
 <% } %>
-
-
-
-<div class="line">
-    <div class="header">PASSED THE ATTENDANCE CHECK</div>
-    <br>
-    <div class="centeredgrid">
-        <% (data.present || []).forEach(username => { %>
-            <div class="centeredgrid-item">
-                <div class="right"><%= username %></div>
-            </div>
-        <% }); %>
-    </div>
-</div>
